@@ -26,6 +26,7 @@
 		67B02EF52037C5820092C186 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67B02EF32037C5820092C186 /* LaunchScreen.storyboard */; };
 		67B02F002037C5820092C186 /* ProjectTuneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B02EFF2037C5820092C186 /* ProjectTuneTests.swift */; };
 		67BE2F4D2038B1960003B4F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BE2F4C2038B1960003B4F5 /* Main.storyboard */; };
+		67E1139F2038C48900252875 /* AddSongTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E1139E2038C48900252875 /* AddSongTableViewController.swift */; };
 		67E846DD203885AE005CA9C2 /* PNCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E846DC203885AE005CA9C2 /* PNCustomTableViewCell.swift */; };
 		67E846DF20388928005CA9C2 /* tswiftalbum.png in Resources */ = {isa = PBXBuildFile; fileRef = 67E846DE20388928005CA9C2 /* tswiftalbum.png */; };
 		67E97513203890E700ECFA55 /* PNViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E97512203890E700ECFA55 /* PNViewModel.swift */; };
@@ -95,6 +96,7 @@
 		67B02F0A2037C5820092C186 /* ProjectTuneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTuneUITests.swift; sourceTree = "<group>"; };
 		67B02F0C2037C5820092C186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67BE2F4C2038B1960003B4F5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		67E1139E2038C48900252875 /* AddSongTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongTableViewController.swift; sourceTree = "<group>"; };
 		67E846DC203885AE005CA9C2 /* PNCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNCustomTableViewCell.swift; sourceTree = "<group>"; };
 		67E846DE20388928005CA9C2 /* tswiftalbum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tswiftalbum.png; sourceTree = "<group>"; };
 		67E97512203890E700ECFA55 /* PNViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNViewModel.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				6715AB9F20388360007C2B27 /* PNSongTableViewCell.swift */,
 				67E846DC203885AE005CA9C2 /* PNCustomTableViewCell.swift */,
 				67E846DE20388928005CA9C2 /* tswiftalbum.png */,
+				67E1139E2038C48900252875 /* AddSongTableViewController.swift */,
 			);
 			path = ProjectTune;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				67E975152038910600ECFA55 /* PNNearbyListViewModel.swift in Sources */,
 				67E975172038916000ECFA55 /* PNNearbyDeviceViewModel.swift in Sources */,
 				679D07C02037D7F300F62C68 /* PNNearbyTableViewController.swift in Sources */,
+				67E1139F2038C48900252875 /* AddSongTableViewController.swift in Sources */,
 				96BAF34920388B6C00B3E2E5 /* PNExtensions.swift in Sources */,
 				67B02EEB2037C5820092C186 /* AppDelegate.swift in Sources */,
 				964ED67A2037D83B0086348E /* PNPlaybackDelegate.swift in Sources */,

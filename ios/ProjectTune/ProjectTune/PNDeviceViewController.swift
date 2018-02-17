@@ -24,6 +24,11 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
     @IBAction func dismissPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,10 +55,12 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
     }
     
     func stopLocalBeacon() {
-        peripheralManager.stopAdvertising()
-        peripheralManager = nil
-        beaconPeripheralData = nil
-        localBeacon = nil
+        if(peripheralManager != nil) {
+            peripheralManager.stopAdvertising()
+            peripheralManager = nil
+            beaconPeripheralData = nil
+            localBeacon = nil
+        }
     }
     
     
