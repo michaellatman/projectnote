@@ -24,6 +24,7 @@ class PNDeviceViewController: UIViewController {
         super.viewDidLoad()
         
         if(isHost){
+            
             print("Host")
             let proximityUUID = UUID(uuidString:
                 "39ED98FF-2900-441A-802F-9C398FC199D2")
