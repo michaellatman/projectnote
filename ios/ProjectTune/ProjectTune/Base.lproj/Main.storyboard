@@ -100,12 +100,29 @@
                         <viewLayoutGuide key="safeArea" id="etM-lb-6Cv"/>
                     </view>
                     <navigationItem key="navigationItem" title="90's Party" id="9Ev-be-Jga">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="devicesicon.png" id="cLB-qq-2aR"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="devicesicon.png" id="cLB-qq-2aR">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hd0-Rj-P6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1665" y="-582"/>
+        </scene>
+        <!--Music Player Controls View Controller-->
+        <scene sceneID="d3l-7A-wJ2">
+            <objects>
+                <viewController storyboardIdentifier="MusicPlayerControlsView" id="tNY-Eu-WBG" customClass="PNMusicPlayerControlsViewController" customModule="ProjectTune" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tZ0-3t-4II">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VH2-YG-3Ji"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oyo-cT-ovm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1665" y="213"/>
         </scene>
         <!--Device Navigation View Controller-->
         <scene sceneID="00J-d6-UFH">

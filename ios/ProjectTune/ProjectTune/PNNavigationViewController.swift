@@ -18,7 +18,7 @@ class PNNavigationViewController: UINavigationController {
         self.navigationBar.barStyle = UIBarStyle.black
       
         self.hidesNavigationBarHairline = true
-        self.setThemeUsingPrimaryColor(Colors.secondaryDarkColor, withSecondaryColor: Colors.primaryColor, andContentStyle: .contrast)
+        self.setStatusBarStyle(.lightContent)
         let textAttributes = [NSAttributedStringKey.foregroundColor:Colors.primaryColor]
         self.navigationBar.titleTextAttributes = textAttributes
         

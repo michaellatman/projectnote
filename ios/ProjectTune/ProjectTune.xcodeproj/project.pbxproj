@@ -34,6 +34,8 @@
 		96BF2FBF2037FE1A008BA989 /* PNNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF2FBE2037FE1A008BA989 /* PNNavigationViewController.swift */; };
 		96BF2FC02037FEF9008BA989 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BF2FC12037FEF9008BA989 /* Alamofire.framework */; };
 		96BF2FC92038046E008BA989 /* PNTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED67B2037DB1B0086348E /* PNTrack.swift */; };
+		67B02F0B2037C5820092C186 /* ProjectTuneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B02F0A2037C5820092C186 /* ProjectTuneUITests.swift */; };
+		67EA067B2037FBEF00CE81CA /* PNMusicPlayerControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EA067A2037FBEF00CE81CA /* PNMusicPlayerControlsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,7 @@
 		67B02F012037C5820092C186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67B02F0A2037C5820092C186 /* ProjectTuneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTuneUITests.swift; sourceTree = "<group>"; };
 		67B02F0C2037C5820092C186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67EA067A2037FBEF00CE81CA /* PNMusicPlayerControlsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNMusicPlayerControlsViewController.swift; sourceTree = "<group>"; };
 		71C9873BE052A1B9FB1AC172 /* Pods-ProjectTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTuneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectTuneTests/Pods-ProjectTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		72A5A83300AD154148D71528 /* Pods-ProjectTuneUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTuneUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectTuneUITests/Pods-ProjectTuneUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		74B2060D90EFDA458728332A /* Pods-ProjectTune.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTune.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectTune/Pods-ProjectTune.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 				679D07D72037EF0A00F62C68 /* PNDeviceNavigationViewController.swift */,
 				96BAF34820388B6C00B3E2E5 /* PNExtensions.swift */,
 				96BAF34A2038921800B3E2E5 /* PNItunesSearchResponse.swift */,
+				67EA067A2037FBEF00CE81CA /* PNMusicPlayerControlsViewController.swift */,
 			);
 			path = ProjectTune;
 			sourceTree = "<group>";
@@ -443,6 +447,8 @@
 				679D07CC2037EBA100F62C68 /* PNDeviceViewController.swift in Sources */,
 				679D07D82037EF0A00F62C68 /* PNDeviceNavigationViewController.swift in Sources */,
 				679D07C42037E00700F62C68 /* PNNearbyCardTableViewCell.swift in Sources */,
+				67EA067B2037FBEF00CE81CA /* PNMusicPlayerControlsViewController.swift in Sources */,
+				67B02EED2037C5820092C186 /* PNNavigationViewController.swift in Sources */,
 				679D07BE2037D15D00F62C68 /* Colors.swift in Sources */,
 				679D07C02037D7F300F62C68 /* PNNearbyTableViewController.swift in Sources */,
 				96BAF34920388B6C00B3E2E5 /* PNExtensions.swift in Sources */,
