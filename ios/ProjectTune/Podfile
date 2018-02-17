@@ -7,7 +7,8 @@ target 'ProjectTune' do
 
   # Pods for ProjectTune
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git', :branch => 'wip/swift4'
-  target 'ProjectTuneTests' do
+  pod 'Alamofire', '~> 4.5'  
+target 'ProjectTuneTests' do
     inherit! :search_paths
     # Pods for testing
   end
