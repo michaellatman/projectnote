@@ -14,6 +14,7 @@ import CoreLocation
 class PNDeviceViewController: UIViewController {
     
     var isHost = false
+    let broadcastId = "testing"
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -72,7 +73,7 @@ extension PNDeviceViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "songCell")!
+        let cell: PNSongTableViewCell = tableView.dequeueReusableCell(withIdentifier: "songCell")! as! PNSongTableViewCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
