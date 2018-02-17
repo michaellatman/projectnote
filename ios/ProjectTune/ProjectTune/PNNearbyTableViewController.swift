@@ -69,7 +69,8 @@ class PNNearbyTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "hostNewSession"){
-            if let vc = segue.destination as? PNDeviceViewController {
+            if let vc = (segue.destination as! UINavigationController).topViewController as? PNDeviceViewController {
+                print("Hosttttt!")
                 vc.isHost = true
             }
         }
