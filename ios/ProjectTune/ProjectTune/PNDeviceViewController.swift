@@ -44,6 +44,7 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
             
             beaconPeripheralData = localBeacon.peripheralData(withMeasuredPower: nil)
             peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+            
         }
         
         
