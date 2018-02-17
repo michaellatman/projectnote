@@ -8,11 +8,35 @@
 
 import UIKit
 import LNPopupController
+import CoreBluetooth
+import CoreLocation
 
 class PNDeviceViewController: UIViewController {
 
+    var isHost = false
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func dismissPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if(isHost){
+            print("Host")
+             let proximityUUID = UUID(uuidString:
+                "39ED98FF-2900-441A-802F-9C398FC199D2")
+            let major : CLBeaconMajorValue = 100
+            let minor : CLBeaconMinorValue = 1
+            let beaconID = "com.example.myDeviceRegion"
+            
+            let peripheral = CBPeripheralManager(delegate: nil, queue: nil)
+            let peripheralData = CLBeaconRegion(proximityUUID: proximityUUID!,
+                                                major: major, minor: minor, identifier: beaconID).peripheralData(withMeasuredPower: nil)
+            
+            peripheral.startAdvertising(((peripheralData as NSDictionary) as! [String : Any]))
+        }
       
 
         // Do any additional setup after loading the view.
@@ -35,3 +59,34 @@ class PNDeviceViewController: UIViewController {
     */
 
 }
+
+extension PNDeviceViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1;
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: "songCell")!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Upcoming"
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let hv = view as! UITableViewHeaderFooterView
+        hv.textLabel?.textColor = UIColor.white
+        hv.tintColor = Colors.secondaryDarkColor.lighten(byPercentage: 0.1)
+    }
+}
+
+

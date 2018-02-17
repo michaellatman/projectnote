@@ -8,21 +8,19 @@
 
 import UIKit
 
-class PNNearbyCardTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var customView: UIView!
+class PNNearbyCardTableViewCell: PNCustomTableViewCell {
     override func awakeFromNib() {
+        selectableView.backgroundColor = Colors.blue
         super.awakeFromNib()
-        customView.backgroundColor = Colors.blue
-        // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        
-        
-        // Configure the view for the selected state
+    @IBOutlet weak var broadcastNameLabel: UILabel!
+    @IBOutlet weak var deviceNameLabel: UILabel!
+    
+    override func setViewModel(_ model: PNViewModel) {
+        if let model = model as? PNNearbyDeviceViewModel {
+            broadcastNameLabel.text = model.broadcastName
+            
+                deviceNameLabel.text = model.deviceName
+        }
     }
-
 }
