@@ -33,6 +33,7 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
         super.viewDidLoad()
         
         if(isHost){
+            
             print("Host")
             let localBeaconUUID = "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5"
             let localBeaconMajor: CLBeaconMajorValue = 123

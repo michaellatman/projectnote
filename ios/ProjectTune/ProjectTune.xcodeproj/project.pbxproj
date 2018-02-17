@@ -34,6 +34,10 @@
 		67E975172038916000ECFA55 /* PNNearbyDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E975162038916000ECFA55 /* PNNearbyDeviceViewModel.swift */; };
 		67EA067B2037FBEF00CE81CA /* PNMusicPlayerControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EA067A2037FBEF00CE81CA /* PNMusicPlayerControlsViewController.swift */; };
 		67EA067F2038786300CE81CA /* radiotowericon.png in Resources */ = {isa = PBXBuildFile; fileRef = 67EA067E2038786200CE81CA /* radiotowericon.png */; };
+		962D28022038B9B2004AA0E5 /* PNFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D28012038B9B2004AA0E5 /* PNFirebase.swift */; };
+		962D28042038C347004AA0E5 /* PNQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D28032038C347004AA0E5 /* PNQueue.swift */; };
+		962D28062038D005004AA0E5 /* PNRemoteAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D28052038D005004AA0E5 /* PNRemoteAction.swift */; };
+		962D28082038D1AD004AA0E5 /* PNBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D28072038D1AD004AA0E5 /* PNBroadcast.swift */; };
 		964ED6782037D7AE0086348E /* PNMusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED6772037D7AE0086348E /* PNMusicController.swift */; };
 		964ED67A2037D83B0086348E /* PNPlaybackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED6792037D83B0086348E /* PNPlaybackDelegate.swift */; };
 		964ED67C2037DB1B0086348E /* PNTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED67B2037DB1B0086348E /* PNTrack.swift */; };
@@ -107,6 +111,10 @@
 		71C9873BE052A1B9FB1AC172 /* Pods-ProjectTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTuneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectTuneTests/Pods-ProjectTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		72A5A83300AD154148D71528 /* Pods-ProjectTuneUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTuneUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectTuneUITests/Pods-ProjectTuneUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		74B2060D90EFDA458728332A /* Pods-ProjectTune.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTune.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectTune/Pods-ProjectTune.release.xcconfig"; sourceTree = "<group>"; };
+		962D28012038B9B2004AA0E5 /* PNFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFirebase.swift; sourceTree = "<group>"; };
+		962D28032038C347004AA0E5 /* PNQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNQueue.swift; sourceTree = "<group>"; };
+		962D28052038D005004AA0E5 /* PNRemoteAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNRemoteAction.swift; sourceTree = "<group>"; };
+		962D28072038D1AD004AA0E5 /* PNBroadcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNBroadcast.swift; sourceTree = "<group>"; };
 		964ED6772037D7AE0086348E /* PNMusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNMusicController.swift; sourceTree = "<group>"; };
 		964ED6792037D83B0086348E /* PNPlaybackDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPlaybackDelegate.swift; sourceTree = "<group>"; };
 		964ED67B2037DB1B0086348E /* PNTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNTrack.swift; sourceTree = "<group>"; };
@@ -197,6 +205,10 @@
 				67E846DC203885AE005CA9C2 /* PNCustomTableViewCell.swift */,
 				67E846DE20388928005CA9C2 /* tswiftalbum.png */,
 				67E1139E2038C48900252875 /* AddSongTableViewController.swift */,
+				962D28012038B9B2004AA0E5 /* PNFirebase.swift */,
+				962D28032038C347004AA0E5 /* PNQueue.swift */,
+				962D28052038D005004AA0E5 /* PNRemoteAction.swift */,
+				962D28072038D1AD004AA0E5 /* PNBroadcast.swift */,
 			);
 			path = ProjectTune;
 			sourceTree = "<group>";
@@ -374,17 +386,31 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ProjectTune/Pods-ProjectTune-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,11 +512,14 @@
 				964ED67C2037DB1B0086348E /* PNTrack.swift in Sources */,
 				96BAF34B2038921800B3E2E5 /* PNItunesSearchResponse.swift in Sources */,
 				679D07CC2037EBA100F62C68 /* PNDeviceViewController.swift in Sources */,
+				962D28022038B9B2004AA0E5 /* PNFirebase.swift in Sources */,
 				679D07D82037EF0A00F62C68 /* PNDeviceNavigationViewController.swift in Sources */,
 				6715ABA020388360007C2B27 /* PNSongTableViewCell.swift in Sources */,
 				67E97513203890E700ECFA55 /* PNViewModel.swift in Sources */,
 				679D07C42037E00700F62C68 /* PNNearbyCardTableViewCell.swift in Sources */,
 				67EA067B2037FBEF00CE81CA /* PNMusicPlayerControlsViewController.swift in Sources */,
+				962D28042038C347004AA0E5 /* PNQueue.swift in Sources */,
+				962D28082038D1AD004AA0E5 /* PNBroadcast.swift in Sources */,
 				67E846DD203885AE005CA9C2 /* PNCustomTableViewCell.swift in Sources */,
 				679D07BE2037D15D00F62C68 /* Colors.swift in Sources */,
 				67E975152038910600ECFA55 /* PNNearbyListViewModel.swift in Sources */,
@@ -500,6 +529,7 @@
 				96BAF34920388B6C00B3E2E5 /* PNExtensions.swift in Sources */,
 				67B02EEB2037C5820092C186 /* AppDelegate.swift in Sources */,
 				964ED67A2037D83B0086348E /* PNPlaybackDelegate.swift in Sources */,
+				962D28062038D005004AA0E5 /* PNRemoteAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,7 +681,7 @@
 				DEVELOPMENT_TEAM = ZQ34F633JX;
 				INFOPLIST_FILE = ProjectTune/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grouptunes.ProjectTune;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grouptune.ProjectTune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -669,7 +699,7 @@
 				DEVELOPMENT_TEAM = ZQ34F633JX;
 				INFOPLIST_FILE = ProjectTune/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grouptunes.ProjectTune;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grouptune.ProjectTune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

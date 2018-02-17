@@ -1,11 +1,20 @@
 PODS:
   - Alamofire (4.6.0)
+  - BoringSSL (9.2):
+    - BoringSSL/Implementation (= 9.2)
+    - BoringSSL/Interface (= 9.2)
+  - BoringSSL/Implementation (9.2):
+    - BoringSSL/Interface (= 9.2)
+  - BoringSSL/Interface (9.2)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - Firebase/Core (4.9.0):
     - FirebaseAnalytics (= 4.0.9)
     - FirebaseCore (= 4.0.15)
+  - Firebase/Firestore (4.9.0):
+    - Firebase/Core
+    - FirebaseFirestore (= 0.10.1)
   - FirebaseAnalytics (4.0.9):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
@@ -13,11 +22,37 @@ PODS:
     - nanopb (~> 0.3)
   - FirebaseCore (4.0.15):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseFirestore (0.10.1):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - gRPC-ProtoRPC (~> 1.0)
+    - leveldb-library (~> 1.18)
+    - Protobuf (~> 3.1)
   - FirebaseInstanceID (2.0.9):
     - FirebaseCore (~> 4.0)
   - GoogleToolboxForMac/Defines (2.1.3)
   - GoogleToolboxForMac/NSData+zlib (2.1.3):
     - GoogleToolboxForMac/Defines (= 2.1.3)
+  - gRPC (1.9.1):
+    - gRPC-RxLibrary (= 1.9.1)
+    - gRPC/Main (= 1.9.1)
+  - gRPC-Core (1.9.1):
+    - gRPC-Core/Implementation (= 1.9.1)
+    - gRPC-Core/Interface (= 1.9.1)
+  - gRPC-Core/Implementation (1.9.1):
+    - BoringSSL (~> 9.0)
+    - gRPC-Core/Interface (= 1.9.1)
+    - nanopb (~> 0.3)
+  - gRPC-Core/Interface (1.9.1)
+  - gRPC-ProtoRPC (1.9.1):
+    - gRPC (= 1.9.1)
+    - gRPC-RxLibrary (= 1.9.1)
+    - Protobuf (~> 3.0)
+  - gRPC-RxLibrary (1.9.1)
+  - gRPC/Main (1.9.1):
+    - gRPC-Core (= 1.9.1)
+    - gRPC-RxLibrary (= 1.9.1)
+  - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -32,11 +67,13 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.0.2):
     - PromiseKit/CorePromise
+  - Protobuf (3.5.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`, branch `wip/swift4`)
   - Firebase/Core
+  - Firebase/Firestore
   - PromiseKit (~> 6.0)
 
 EXTERNAL SOURCES:
@@ -51,15 +88,23 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  BoringSSL: f3d6b8ce199b9c450a8cfc14895d07a2627fc232
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Firebase: 632216af3ed7f31e3be34776947fdc7546cfb572
   FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
   FirebaseCore: 3bd047463058fa6b5d312c97502c52e45401cdfb
+  FirebaseFirestore: a6db7a47c6a47d26069892d7db39f7792f2f7f9a
   FirebaseInstanceID: d2058a35e9bebda1b6dd42486b84917bde552a9d
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  gRPC: 58828d611419d49da19ad02a60679ffa10a10a87
+  gRPC-Core: 66413bf1f2d038a6221bc7bfcbeeaa5a117cee29
+  gRPC-ProtoRPC: f29e8b7445e0d3c0311678ab121e6c164da4ca5e
+  gRPC-RxLibrary: 8e0067bfe8a054022c7a81470baace4f2f633b48
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PromiseKit: fb2f518a7e868eacddfd3a08c38fe81eff25f92c
+  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
 
-PODFILE CHECKSUM: ea8288df6a8d5ce56851391fee4ed271f62cdd71
+PODFILE CHECKSUM: f3e608f300f1cebdf26246c309dd859bd7080ffe
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.3.1
