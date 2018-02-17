@@ -649,9 +649,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZQ34F633JX;
+				DEVELOPMENT_TEAM = R65ELCKB8X;
 				INFOPLIST_FILE = ProjectTune/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grouptunes.ProjectTune;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grouptuness.ProjectTune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -667,9 +668,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZQ34F633JX;
+				DEVELOPMENT_TEAM = R65ELCKB8X;
 				INFOPLIST_FILE = ProjectTune/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grouptunes.ProjectTune;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grouptuness.ProjectTune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
