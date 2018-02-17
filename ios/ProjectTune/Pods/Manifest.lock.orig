@@ -1,0 +1,55 @@
+PODS:
+<<<<<<< HEAD
+  - Alamofire (4.5.1)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - PromiseKit (6.0.2):
+    - PromiseKit/CorePromise (= 6.0.2)
+    - PromiseKit/Foundation (= 6.0.2)
+    - PromiseKit/UIKit (= 6.0.2)
+  - PromiseKit/CorePromise (6.0.2)
+  - PromiseKit/Foundation (6.0.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.0.2):
+    - PromiseKit/CorePromise
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`, branch `wip/swift4`)
+  - PromiseKit (~> 6.0)
+=======
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+
+DEPENDENCIES:
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`, branch `wip/swift4`)
+>>>>>>> d8c2d87154e5729d6c7604be2c3626e985e9855e
+
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :branch: wip/swift4
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: db432ca1b1a3d8f83ee1f881208c0c960a325e73
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+SPEC CHECKSUMS:
+<<<<<<< HEAD
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  PromiseKit: fb2f518a7e868eacddfd3a08c38fe81eff25f92c
+
+PODFILE CHECKSUM: f430e060364cca3769f5b323285aa47b8a6d647d
+
+COCOAPODS: 1.3.1
+=======
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+
+PODFILE CHECKSUM: a25b497c027bde1f11b1204cc0c7b04aee08358d
+
+COCOAPODS: 1.4.0
+>>>>>>> d8c2d87154e5729d6c7604be2c3626e985e9855e
