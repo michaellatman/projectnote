@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.5.1)
+  - Alamofire (4.6.0)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -50,7 +50,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ViccAlexander/Chameleon.git
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Firebase: 632216af3ed7f31e3be34776947fdc7546cfb572
   FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
@@ -62,4 +62,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ea8288df6a8d5ce56851391fee4ed271f62cdd71
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0
