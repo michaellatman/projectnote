@@ -7,20 +7,16 @@
 //
 
 import UIKit
+import LNPopupController
 
 class PNDeviceNavigationViewController: PNNavigationViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var vc = UIViewController()
-        vc.view.backgroundColor = UIColor.white
-        let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
-        pause.accessibilityLabel = NSLocalizedString("Pause", comment: "")
-        let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: nil, action: nil)
-        next.accessibilityLabel = NSLocalizedString("Next Track", comment: "")
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MusicPlayerControlsView")
         
-        self.popupItem.leftBarButtonItems = [ pause ]
-        self.popupItem.rightBarButtonItems = [ next ]
+        self.popupInteractionStyle = .drag
 
         self.presentPopupBar(withContentViewController: vc, animated: true) {
             

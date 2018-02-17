@@ -7,12 +7,30 @@
 //
 
 import UIKit
+import LNPopupController
 
 class PNMusicPlayerControlsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
+        pause.accessibilityLabel = NSLocalizedString("Pause", comment: "")
+        pause.tintColor = UIColor.white
+        let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: nil, action: nil)
+        next.accessibilityLabel = NSLocalizedString("Next Track", comment: "")
+        next.tintColor = UIColor.white
+        popupItem.title = "Party in The USA"
+        popupItem.subtitle = "Miley Cyrus"
+        popupItem.leftBarButtonItems = [ pause ]
+        popupItem.rightBarButtonItems = [ next ]
+        
+        
+        LNPopupBar.appearance().barTintColor = Colors.blueDark
+        LNPopupBar.appearance().backgroundStyle = UIBlurEffectStyle.dark
+        
+        popupItem.progress += 0.5;
         // Do any additional setup after loading the view.
     }
 
