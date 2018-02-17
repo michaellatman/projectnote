@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class PNNearbyTableViewController: UITableViewController {
     var model: PNNearbyListViewModel = PNNearbyListViewModel()
     override func viewDidLoad() {
@@ -15,6 +16,7 @@ class PNNearbyTableViewController: UITableViewController {
         model.addDevice(PNNearbyDeviceViewModel.init(deviceName: UIDevice.current.name, broadcastName: "90's Party"))
         
         view.backgroundColor = Colors.secondaryDarkColor
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
