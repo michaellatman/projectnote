@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CRNotifications
 import PromiseKit
 class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
 
@@ -19,15 +20,24 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
         let backgroundView = UIView.init(frame: self.tableView.bounds)
         backgroundView.backgroundColor = UIColor.black
         self.tableView.backgroundView = backgroundView
-        
         searchController.searchResultsTableView.backgroundColor = UIColor.black
         searchController.searchResultsDataSource = self
+        
+       
         //searchController.searchResultsTableView.color
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        CRNotifications.showNotification(type: .success, title: "Added Song", message: "Keep the tunes going!", dismissDelay: 3)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {

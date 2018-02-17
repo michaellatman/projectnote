@@ -250,11 +250,11 @@
             <objects>
                 <tableViewController title="Add Song" id="Wsf-qF-PE9" customClass="AddSongTableViewController" customModule="ProjectTune" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="e1C-C1-R77">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" id="RMi-0V-8cV">
+                        <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" barStyle="black" id="RMi-0V-8cV">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -271,25 +271,28 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kw-4j-bdp">
-                                            <rect key="frame" x="166" y="11" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhI-e9-WAg">
-                                            <rect key="frame" x="87" y="22" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ajb-VF-4cd">
+                                            <rect key="frame" x="28" y="2" width="44.5" height="41"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhI-e9-WAg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="44.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kw-4j-bdp">
+                                                    <rect key="frame" x="0.0" y="20.5" width="44.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="0Kw-4j-bdp" firstAttribute="centerX" secondItem="fiC-yv-364" secondAttribute="centerX" id="7AX-Re-aTo"/>
-                                        <constraint firstItem="XhI-e9-WAg" firstAttribute="leading" secondItem="fiC-yv-364" secondAttribute="leading" constant="16" id="FhD-cm-xCL"/>
-                                        <constraint firstItem="XhI-e9-WAg" firstAttribute="centerY" secondItem="fiC-yv-364" secondAttribute="centerY" id="bXh-pf-ghO"/>
-                                        <constraint firstItem="0Kw-4j-bdp" firstAttribute="centerY" secondItem="fiC-yv-364" secondAttribute="centerY" id="tsa-De-WoI"/>
+                                        <constraint firstItem="ajb-VF-4cd" firstAttribute="centerY" secondItem="fiC-yv-364" secondAttribute="centerY" id="37G-Pw-S25"/>
+                                        <constraint firstItem="ajb-VF-4cd" firstAttribute="leading" secondItem="fiC-yv-364" secondAttribute="leading" constant="28" id="A8F-1a-DW3"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -305,14 +308,16 @@
                             <outlet property="delegate" destination="Wsf-qF-PE9" id="c6O-nr-isb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Song" largeTitleDisplayMode="never" id="0rO-ib-6gf"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
                     <connections>
                         <outlet property="searchController" destination="Ur9-CE-ZFi" id="0BP-NY-fTZ"/>
                         <outlet property="searchDisplayController" destination="Ur9-CE-ZFi" id="PeY-dy-wWK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O8Q-Z6-MUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationItem title="Add Song" largeTitleDisplayMode="never" id="0rO-ib-6gf"/>
                 <searchDisplayController id="Ur9-CE-ZFi">
                     <connections>
                         <outlet property="delegate" destination="Wsf-qF-PE9" id="4At-wB-dmO"/>
@@ -431,6 +436,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VH2-YG-3Ji"/>
                     </view>
+                    <connections>
+                        <outlet property="artistNameLabel" destination="Ow5-GL-LdH" id="OAJ-t0-1vb"/>
+                        <outlet property="pausePlayButton" destination="NGZ-62-AEU" id="Z8U-2C-sW0"/>
+                        <outlet property="trackNameLabel" destination="UcA-20-jBG" id="7Uw-cN-djK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyo-cT-ovm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

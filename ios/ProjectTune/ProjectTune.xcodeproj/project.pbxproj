@@ -10,6 +10,8 @@
 		0891CFC5D564035A8293AA24 /* Pods_ProjectTune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC07125D5BBEC77D4F7EDF75 /* Pods_ProjectTune.framework */; };
 		0DF3CE48FE84B59E9C17022F /* Pods_ProjectTuneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF7916B24AB2B1E7BF56CC2E /* Pods_ProjectTuneTests.framework */; };
 		6715ABA020388360007C2B27 /* PNSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6715AB9F20388360007C2B27 /* PNSongTableViewCell.swift */; };
+		6766B0E12038DF9C0057F884 /* PNSearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766B0E02038DF9C0057F884 /* PNSearchResultViewModel.swift */; };
+		6766B0E32038E2A00057F884 /* PNSongSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766B0E22038E2A00057F884 /* PNSongSearchResultTableViewCell.swift */; };
 		679D07BC2037D05600F62C68 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679D07BB2037D05600F62C68 /* ChameleonFramework.framework */; };
 		679D07BE2037D15D00F62C68 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679D07BD2037D15D00F62C68 /* Colors.swift */; };
 		679D07C02037D7F300F62C68 /* PNNearbyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679D07BF2037D7F300F62C68 /* PNNearbyTableViewController.swift */; };
@@ -79,6 +81,8 @@
 		4972C635D291A309D5ED3ECF /* Pods-ProjectTuneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTuneUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectTuneUITests/Pods-ProjectTuneUITests.release.xcconfig"; sourceTree = "<group>"; };
 		593958787C8789A42191D4F1 /* Pods_ProjectTuneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectTuneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6715AB9F20388360007C2B27 /* PNSongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSongTableViewCell.swift; sourceTree = "<group>"; };
+		6766B0E02038DF9C0057F884 /* PNSearchResultViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNSearchResultViewModel.swift; sourceTree = "<group>"; };
+		6766B0E22038E2A00057F884 /* PNSongSearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNSongSearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		679D07BB2037D05600F62C68 /* ChameleonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ChameleonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		679D07BD2037D15D00F62C68 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		679D07BF2037D7F300F62C68 /* PNNearbyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNNearbyTableViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 				67EA067A2037FBEF00CE81CA /* PNMusicPlayerControlsViewController.swift */,
 				67EA067E2038786200CE81CA /* radiotowericon.png */,
 				6715AB9F20388360007C2B27 /* PNSongTableViewCell.swift */,
+				6766B0E22038E2A00057F884 /* PNSongSearchResultTableViewCell.swift */,
 				67E846DC203885AE005CA9C2 /* PNCustomTableViewCell.swift */,
 				67E846DE20388928005CA9C2 /* tswiftalbum.png */,
 				67E1139E2038C48900252875 /* AddSongTableViewController.swift */,
@@ -237,6 +242,7 @@
 				67E97512203890E700ECFA55 /* PNViewModel.swift */,
 				67E975142038910600ECFA55 /* PNNearbyListViewModel.swift */,
 				67E975162038916000ECFA55 /* PNNearbyDeviceViewModel.swift */,
+				6766B0E02038DF9C0057F884 /* PNSearchResultViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ProjectTune/Pods-ProjectTune-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/CRNotifications/CRNotifications.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
@@ -402,6 +409,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CRNotifications.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
@@ -525,11 +533,13 @@
 				67E975152038910600ECFA55 /* PNNearbyListViewModel.swift in Sources */,
 				67E975172038916000ECFA55 /* PNNearbyDeviceViewModel.swift in Sources */,
 				679D07C02037D7F300F62C68 /* PNNearbyTableViewController.swift in Sources */,
+				6766B0E32038E2A00057F884 /* PNSongSearchResultTableViewCell.swift in Sources */,
 				67E1139F2038C48900252875 /* AddSongTableViewController.swift in Sources */,
 				96BAF34920388B6C00B3E2E5 /* PNExtensions.swift in Sources */,
 				67B02EEB2037C5820092C186 /* AppDelegate.swift in Sources */,
 				964ED67A2037D83B0086348E /* PNPlaybackDelegate.swift in Sources */,
 				962D28062038D005004AA0E5 /* PNRemoteAction.swift in Sources */,
+				6766B0E12038DF9C0057F884 /* PNSearchResultViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
