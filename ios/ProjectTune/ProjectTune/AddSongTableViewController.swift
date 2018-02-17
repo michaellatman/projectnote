@@ -10,6 +10,7 @@ import UIKit
 import PromiseKit
 class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
 
+    var model: PNSearchResultViewModel = PNSearchResultViewModel(tracks: [])
     @IBOutlet var searchController: UISearchDisplayController!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.backgroundView = backgroundView
         
         searchController.searchResultsTableView.backgroundColor = UIColor.black
+        searchController.searchResultsDataSource = self
         //searchController.searchResultsTableView.color
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -42,12 +44,12 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return model.tracks!.count
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -57,22 +59,26 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
             PNNetwork.fetchTracksWith(term: searchBar.text!)
             }.done { response in
                 // response is PNNetworkItunesSearchResponse
-                print(response.results!.first!.artistName)
+                self.model = PNSearchResultViewModel.init(tracks: response.results!)
+                self.searchController.searchResultsTableView.reloadData()
             }.catch { error in
                 //…
                 print(error)
         }
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        var cell = self.tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath)
+        if var cell = cell as? PNSongSearchResultTableViewCell {
+            cell.songNameLabel.text = model.tracks![indexPath.row].trackName
+            cell.artistNameLabel.text = model.tracks![indexPath.row].artistName
+        }
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -120,3 +126,4 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
     */
 
 }
+
