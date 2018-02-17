@@ -1,24 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14087.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bR7-eC-QWx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14075.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Nearby-->
+        <scene sceneID="sya-RZ-fcB">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <tableViewController id="o6Q-HI-W2S" customClass="PNNearbyTableViewController" customModule="ProjectTune" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="wYU-Yt-ui4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="nearbyDeviceCell" rowHeight="73" id="wDX-zq-LTW" customClass="PNNearbyCardTableViewCell" customModule="ProjectTune" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="73"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wDX-zq-LTW" id="h8a-Is-ELZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwU-Lu-fBK">
+                                            <rect key="frame" x="16" y="11" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i4O-8u-xAT">
+                                            <rect key="frame" x="15" y="7" width="345" height="58"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signalicon.png" translatesAutoresizingMaskIntoConstraints="NO" id="sff-XT-61b">
+                                                    <rect key="frame" x="25" y="5" width="48" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="Fn5-Yo-p7O"/>
+                                                        <constraint firstAttribute="width" constant="48" id="jPf-xe-dZU"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Years @ 914" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkw-Rx-fSl">
+                                                    <rect key="frame" x="78" y="18" width="138" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.13054566062176165" green="0.13054566062176165" blue="0.13054566062176165" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstItem="lkw-Rx-fSl" firstAttribute="centerY" secondItem="sff-XT-61b" secondAttribute="centerY" id="X81-NZ-1ee"/>
+                                                <constraint firstItem="sff-XT-61b" firstAttribute="leading" secondItem="i4O-8u-xAT" secondAttribute="leading" constant="25" id="jWr-i8-EnM"/>
+                                                <constraint firstItem="lkw-Rx-fSl" firstAttribute="leading" secondItem="sff-XT-61b" secondAttribute="trailing" constant="5" id="lcO-lS-yYN"/>
+                                                <constraint firstItem="sff-XT-61b" firstAttribute="centerY" secondItem="i4O-8u-xAT" secondAttribute="centerY" id="yHU-X3-iz9"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="i4O-8u-xAT" firstAttribute="width" secondItem="h8a-Is-ELZ" secondAttribute="width" constant="-30" id="5ug-JA-N03"/>
+                                        <constraint firstItem="i4O-8u-xAT" firstAttribute="centerY" secondItem="h8a-Is-ELZ" secondAttribute="centerY" id="JkZ-xI-Rts"/>
+                                        <constraint firstItem="i4O-8u-xAT" firstAttribute="centerX" secondItem="h8a-Is-ELZ" secondAttribute="centerX" id="Xw5-sc-hZH"/>
+                                        <constraint firstItem="i4O-8u-xAT" firstAttribute="height" secondItem="h8a-Is-ELZ" secondAttribute="height" constant="-15" id="zj9-d7-gPt"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="customView" destination="i4O-8u-xAT" id="VxO-N2-kmY"/>
+                                    <segue destination="a8L-zb-M4S" kind="presentation" id="HZB-2d-uDr"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="o6Q-HI-W2S" id="6qP-ln-9ju"/>
+                            <outlet property="delegate" destination="o6Q-HI-W2S" id="Nuk-IV-LYh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Nearby" id="WJD-4n-6hT"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdp-mM-H7h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="165.59999999999999" y="169.56521739130437"/>
+        </scene>
+        <!--90's Party-->
+        <scene sceneID="QJV-f7-i0s">
+            <objects>
+                <viewController id="RXF-s8-M6e" customClass="PNDeviceViewController" customModule="ProjectTune" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FdI-M7-zEK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="etM-lb-6Cv"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="90's Party" id="9Ev-be-Jga">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="devicesicon.png" id="cLB-qq-2aR"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hd0-Rj-P6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1665" y="-582"/>
+        </scene>
+        <!--Device Navigation View Controller-->
+        <scene sceneID="00J-d6-UFH">
+            <objects>
+                <navigationController id="a8L-zb-M4S" customClass="PNDeviceNavigationViewController" customModule="ProjectTune" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="zXE-YB-09x">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="RXF-s8-M6e" kind="relationship" relationship="rootViewController" id="QGh-ov-vQ9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rv3-OR-Lda" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="975" y="-582"/>
+        </scene>
+        <!--Navigation View Controller-->
+        <scene sceneID="yVK-Aq-Xrg">
+            <objects>
+                <navigationController id="bR7-eC-QWx" customClass="PNNavigationViewController" customModule="ProjectTune" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kAX-uu-sNi">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="o6Q-HI-W2S" kind="relationship" relationship="rootViewController" id="fN4-iA-5lv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YnS-DB-CtC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-775" y="171"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="devicesicon.png" width="32" height="32"/>
+        <image name="signalicon.png" width="96" height="96"/>
+    </resources>
 </document>
