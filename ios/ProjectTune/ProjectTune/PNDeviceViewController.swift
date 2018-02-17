@@ -11,7 +11,7 @@ import LNPopupController
 import PromiseKit
 
 class PNDeviceViewController: UIViewController {
-    
+    var isHost = false
     override func viewDidLoad() {
         super.viewDidLoad()
       
