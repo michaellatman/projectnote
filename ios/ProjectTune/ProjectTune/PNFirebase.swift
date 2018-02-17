@@ -61,10 +61,10 @@ class PNFirebase {
         }
     }
     
-    func remove(track: PNTrack, broadcastId: String){
+    func remove(trackId: String, broadcastId: String){
         let db = Firestore.firestore()
         let queueCollection = db.collection("broadcast").document(broadcastId).collection("queue")
-        queueCollection.whereField("trackId", isEqualTo: String(describing: track.trackId)).getDocuments { (snapshot, error) in
+        queueCollection.whereField("trackId", isEqualTo: trackId).getDocuments { (snapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
