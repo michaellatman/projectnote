@@ -8,11 +8,17 @@
 
 import UIKit
 import LNPopupController
+<<<<<<< HEAD
+import PromiseKit
+
+class PNDeviceViewController: UIViewController {
+    
+=======
 import CoreBluetooth
 import CoreLocation
 
 class PNDeviceViewController: UIViewController {
-    
+
     var isHost = false
     
     @IBOutlet weak var tableView: UITableView!
@@ -20,12 +26,13 @@ class PNDeviceViewController: UIViewController {
     @IBAction func dismissPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+>>>>>>> 7c89cd807d69dd31e6aca0351f75c54235dfd2b7
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if(isHost){
             print("Host")
-            let proximityUUID = UUID(uuidString:
+             let proximityUUID = UUID(uuidString:
                 "39ED98FF-2900-441A-802F-9C398FC199D2")
             let major : CLBeaconMajorValue = 100
             let minor : CLBeaconMinorValue = 1
@@ -37,27 +44,27 @@ class PNDeviceViewController: UIViewController {
             
             peripheral.startAdvertising(((peripheralData as NSDictionary) as! [String : Any]))
         }
-        
-        
+      
+
         // Do any additional setup after loading the view.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
+
     /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
 
 extension PNDeviceViewController: UITableViewDelegate, UITableViewDataSource {
@@ -69,7 +76,7 @@ extension PNDeviceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCell(withIdentifier: "songCell")!
     }
@@ -88,6 +95,5 @@ extension PNDeviceViewController: UITableViewDelegate, UITableViewDataSource {
         hv.tintColor = Colors.secondaryDarkColor.lighten(byPercentage: 0.1)
     }
 }
-
 
 
