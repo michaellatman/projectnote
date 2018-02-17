@@ -43,6 +43,7 @@
 		96BF2FBF2037FE1A008BA989 /* PNNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF2FBE2037FE1A008BA989 /* PNNavigationViewController.swift */; };
 		96BF2FC02037FEF9008BA989 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BF2FC12037FEF9008BA989 /* Alamofire.framework */; };
 		96BF2FC92038046E008BA989 /* PNTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED67B2037DB1B0086348E /* PNTrack.swift */; };
+		B3126F392038DF7C00AAAB36 /* PNMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3126F382038DF7C00AAAB36 /* PNMusicViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		96BF2FC12037FEF9008BA989 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A75ADCB4871F504AA01F9755 /* Pods-ProjectTuneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTuneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectTuneTests/Pods-ProjectTuneTests.release.xcconfig"; sourceTree = "<group>"; };
 		AF7916B24AB2B1E7BF56CC2E /* Pods_ProjectTuneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectTuneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3126F382038DF7C00AAAB36 /* PNMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNMusicViewModel.swift; sourceTree = "<group>"; };
 		EC07125D5BBEC77D4F7EDF75 /* Pods_ProjectTune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectTune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				67E97512203890E700ECFA55 /* PNViewModel.swift */,
+				B3126F382038DF7C00AAAB36 /* PNMusicViewModel.swift */,
 				67E975142038910600ECFA55 /* PNNearbyListViewModel.swift */,
 				67E975162038916000ECFA55 /* PNNearbyDeviceViewModel.swift */,
 			);
@@ -477,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3126F392038DF7C00AAAB36 /* PNMusicViewModel.swift in Sources */,
 				964ED6782037D7AE0086348E /* PNMusicController.swift in Sources */,
 				96BF2FBF2037FE1A008BA989 /* PNNavigationViewController.swift in Sources */,
 				964ED67E2037F1C00086348E /* PNNetwork.swift in Sources */,

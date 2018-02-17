@@ -10,20 +10,31 @@ import UIKit
 import LNPopupController
 
 class PNMusicPlayerControlsViewController: UIViewController {
-
+    var model = PNMusicViewModel.init(songName: "song", artistName: "artist", isPlaying: false)
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(model.isPlaying == false){
+            let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
+            pause.accessibilityLabel = NSLocalizedString("Pause", comment: "")
+            pause.tintColor = UIColor.white
+            pause.tintColor = UIColor.white
+            popupItem.leftBarButtonItems = [ pause ]
+        }
+        else if (model.isPlaying == true){
+            let play = UIBarButtonItem(image: UIImage(named: "play"), style: .plain, target: nil, action: nil)
+            play.accessibilityLabel = NSLocalizedString("Play", comment: "")
+            play.tintColor = UIColor.white
+            play.tintColor = UIColor.white
+            popupItem.leftBarButtonItems = [ play ]
+        }
         
-        let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
-        pause.accessibilityLabel = NSLocalizedString("Pause", comment: "")
-        pause.tintColor = UIColor.white
         let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: nil, action: nil)
         next.accessibilityLabel = NSLocalizedString("Next Track", comment: "")
         next.tintColor = UIColor.white
-        popupItem.title = "Party in The USA"
-        popupItem.subtitle = "Miley Cyrus"
-        popupItem.leftBarButtonItems = [ pause ]
+        popupItem.title = model.songName
+        popupItem.subtitle = model.artistName
+        
         popupItem.rightBarButtonItems = [ next ]
         
         
