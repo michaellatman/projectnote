@@ -8,9 +8,22 @@
 
 import UIKit
 import LNPopupController
+import PromiseKit
 
 class PNDeviceViewController: UIViewController {
 
+    @IBAction func onButtonClick(_ sender: Any) {
+        
+        firstly {
+            PNNetwork.fetchTracksWith(term: "hello")
+        }.done { response in
+            print(response)
+        }.catch { error in
+            print("Error fetching requested tracks")
+            print(error)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
       

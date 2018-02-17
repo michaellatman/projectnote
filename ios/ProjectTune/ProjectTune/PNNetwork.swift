@@ -7,10 +7,41 @@
 //
 
 import Foundation
+import Alamofire
+import PromiseKit
 
 class PNNetwork {
     
-    static func fetchTracks() -> [PNTrack] {
+    private static let ITUNES_API_BASE_URL = "https://itunes.apple.com/search?country=US"
+    
+    static func fetchTracksWith(term: String) -> Promise<PNNetworkItunesSearchResponse> {
+        var resultURL = ""
+        resultURL = appendToURL(ITUNES_API_BASE_URL, key: "entity", value: "song")
+        resultURL = appendToURL(resultURL, key: "media", value: "music")
+        resultURL = appendToURL(resultURL, key: "term", value: term)
+        
+        return Alamofire.request(resultURL, method: .get).responseCodable()
         
     }
+    
+    private static func appendToURL(_ url: String, key:String, value:String) -> String {
+        return url + "&" + key + "=" + value
+    }
+    
+    struct PNNetworkError: LocalizedError {
+        
+        var title: String?
+        var code: Int
+        var errorDescription: String? { return _description }
+        var failureReason: String? { return _description }
+        
+        private var _description: String
+        
+        init(title: String?, description: String, code: Int) {
+            self.title = title ?? "Error"
+            self._description = description
+            self.code = code
+        }
+    }
+    
 }

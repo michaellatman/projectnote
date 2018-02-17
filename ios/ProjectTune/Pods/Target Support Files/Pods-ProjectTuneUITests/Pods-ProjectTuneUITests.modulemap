@@ -1,6 +1,0 @@
-framework module Pods_ProjectTuneUITests {
-  umbrella header "Pods-ProjectTuneUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
