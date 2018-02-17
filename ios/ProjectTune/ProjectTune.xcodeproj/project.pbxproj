@@ -39,7 +39,7 @@
 		964ED67E2037F1C00086348E /* PNNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED67D2037F1C00086348E /* PNNetwork.swift */; };
 		96BAF34920388B6C00B3E2E5 /* PNExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BAF34820388B6C00B3E2E5 /* PNExtensions.swift */; };
 		96BAF34B2038921800B3E2E5 /* PNItunesSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BAF34A2038921800B3E2E5 /* PNItunesSearchResponse.swift */; };
-		96BAF34D20389F5500B3E2E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96BAF34C20389F5500B3E2E5 /* GoogleService-Info.plist */; };
+		96BAF34F2038B47200B3E2E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96BAF34E2038B47200B3E2E5 /* GoogleService-Info.plist */; };
 		96BF2FBF2037FE1A008BA989 /* PNNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF2FBE2037FE1A008BA989 /* PNNavigationViewController.swift */; };
 		96BF2FC02037FEF9008BA989 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BF2FC12037FEF9008BA989 /* Alamofire.framework */; };
 		96BF2FC92038046E008BA989 /* PNTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED67B2037DB1B0086348E /* PNTrack.swift */; };
@@ -111,7 +111,7 @@
 		964ED67D2037F1C00086348E /* PNNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNNetwork.swift; sourceTree = "<group>"; };
 		96BAF34820388B6C00B3E2E5 /* PNExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNExtensions.swift; sourceTree = "<group>"; };
 		96BAF34A2038921800B3E2E5 /* PNItunesSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNItunesSearchResponse.swift; sourceTree = "<group>"; };
-		96BAF34C20389F5500B3E2E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		96BAF34E2038B47200B3E2E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96BF2FBE2037FE1A008BA989 /* PNNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNNavigationViewController.swift; sourceTree = "<group>"; };
 		96BF2FC12037FEF9008BA989 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A75ADCB4871F504AA01F9755 /* Pods-ProjectTuneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTuneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectTuneTests/Pods-ProjectTuneTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		67B02EE92037C5820092C186 /* ProjectTune */ = {
 			isa = PBXGroup;
 			children = (
-				96BAF34C20389F5500B3E2E5 /* GoogleService-Info.plist */,
+				96BAF34E2038B47200B3E2E5 /* GoogleService-Info.plist */,
 				96BF2FBE2037FE1A008BA989 /* PNNavigationViewController.swift */,
 				67E97511203890D900ECFA55 /* Model */,
 				67B02EEA2037C5820092C186 /* AppDelegate.swift */,
@@ -349,7 +349,7 @@
 				67E846DF20388928005CA9C2 /* tswiftalbum.png in Resources */,
 				679D07C82037E8AE00F62C68 /* dismissicon.png in Resources */,
 				679D07CA2037E96A00F62C68 /* devicesicon.png in Resources */,
-				96BAF34D20389F5500B3E2E5 /* GoogleService-Info.plist in Resources */,
+				96BAF34F2038B47200B3E2E5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
