@@ -7,21 +7,82 @@
 //
 
 import UIKit
+import CoreLocation
 
-class PNNearbyTableViewController: UITableViewController {
+class PNNearbyTableViewController: UITableViewController, CLLocationManagerDelegate {
     var model: PNNearbyListViewModel = PNNearbyListViewModel()
+    var locationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        model.addDevice(PNNearbyDeviceViewModel.init(deviceName: UIDevice.current.name, broadcastName: "90's Party"))
+        locationManager = CLLocationManager()
+        locationManager.delegate = self as! CLLocationManagerDelegate
+        locationManager.requestAlwaysAuthorization()
+        self.tableView.reloadData()
         
         view.backgroundColor = Colors.secondaryDarkColor
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        startScanning()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        stopScanning()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    print("Scanning")
+                    startScanning()
+                }
+            }
+        }
+    }
+    
+    func startScanning() {
+        let uuid = UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!
+        
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: 123, minor: 456, identifier: "MyBeacon")
+        
+        locationManager.startMonitoring(for: beaconRegion)
+        locationManager.startRangingBeacons(in: beaconRegion)
+    }
+    
+    func stopScanning() {
+        let uuid = UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!
+        
+        
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: 123, minor: 456, identifier: "MyBeacon")
+        locationManager.stopMonitoring(for: beaconRegion)
+        locationManager.stopRangingBeacons(in: beaconRegion)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        var devices: PNNearbyListViewModel = PNNearbyListViewModel()
+        for beacon in beacons {
+            devices.addDevice(PNNearbyDeviceViewModel.init(deviceName: UIDevice.current.name, broadcastName: "90's Party"))
+        }
+        print(beacons)
+      
+        if(self.model.nearbyDevices.count != devices.nearbyDevices.count) {
+            self.model = devices
+            self.tableView.reloadSections(IndexSet.init(integer: 1), with: .automatic)
+        }
+        else {
+            self.model = devices
+            self.tableView.reloadSections(IndexSet.init(integer: 1), with: .none)
+        }
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,11 +128,14 @@ class PNNearbyTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "hostNewSession"){
-            if let vc = segue.destination as? PNDeviceViewController {
+            if let vc = (segue.destination as! UINavigationController).topViewController as? PNDeviceViewController {
+                print("Hosttttt!")
                 vc.isHost = true
             }
         }
     }
+    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

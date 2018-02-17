@@ -11,7 +11,11 @@ import LNPopupController
 import CoreBluetooth
 import CoreLocation
 
-class PNDeviceViewController: UIViewController {
+class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
+    
+    var localBeacon: CLBeaconRegion!
+    var beaconPeripheralData: NSDictionary!
+    var peripheralManager: CBPeripheralManager!
     
     var isHost = false
     let broadcastId = "testing"
@@ -21,27 +25,54 @@ class PNDeviceViewController: UIViewController {
     @IBAction func dismissPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if(isHost){
             
             print("Host")
-            let proximityUUID = UUID(uuidString:
-                "39ED98FF-2900-441A-802F-9C398FC199D2")
-            let major : CLBeaconMajorValue = 100
-            let minor : CLBeaconMinorValue = 1
-            let beaconID = "com.example.myDeviceRegion"
+            let localBeaconUUID = "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5"
+            let localBeaconMajor: CLBeaconMajorValue = 123
+            let localBeaconMinor: CLBeaconMinorValue = 456
             
-            let peripheral = CBPeripheralManager(delegate: nil, queue: nil)
-            let peripheralData = CLBeaconRegion(proximityUUID: proximityUUID!,
-                                                major: major, minor: minor, identifier: beaconID).peripheralData(withMeasuredPower: nil)
+            let uuid = UUID(uuidString: localBeaconUUID)!
+            localBeacon = CLBeaconRegion(proximityUUID: uuid, major: localBeaconMajor, minor: localBeaconMinor, identifier: "Your private identifer here")
             
-            peripheral.startAdvertising(((peripheralData as NSDictionary) as! [String : Any]))
+            beaconPeripheralData = localBeacon.peripheralData(withMeasuredPower: nil)
+            peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+            
         }
         
         
         // Do any additional setup after loading the view.
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        stopLocalBeacon()
+    }
+    
+    func stopLocalBeacon() {
+        if(peripheralManager != nil) {
+            peripheralManager.stopAdvertising()
+            peripheralManager = nil
+            beaconPeripheralData = nil
+            localBeacon = nil
+        }
+    }
+    
+    
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        if peripheral.state == .poweredOn {
+            peripheralManager.startAdvertising(beaconPeripheralData as! [String: AnyObject]!)
+        } else if peripheral.state == .poweredOff {
+            peripheralManager.stopAdvertising()
+        }
     }
     
     override func didReceiveMemoryWarning() {

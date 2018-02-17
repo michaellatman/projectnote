@@ -25,7 +25,9 @@ class PNNetwork {
     }
     
     private static func appendToURL(_ url: String, key:String, value:String) -> String {
-        return url + "&" + key + "=" + value
+        
+        var escapedString = value.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        return url + "&" + key + "=" + escapedString!
     }
     
     struct PNNetworkError: LocalizedError {
