@@ -10,7 +10,7 @@ import Foundation
 
 class PNRemoteAction {
     
-    private var sessionId: String?
+    private var broadcastId: String?
     
     enum ActionType: String{
         case skipPrev = "skipPrev"
@@ -19,8 +19,8 @@ class PNRemoteAction {
         case playNow = "playNow"
     }
     
-    init(sessionId: String) {
-        self.sessionId = sessionId
+    init(broadcastId: String) {
+        self.broadcastId = broadcastId
     }
     
     func send(_ remoteActionVal: ActionType){

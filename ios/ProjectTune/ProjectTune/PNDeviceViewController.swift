@@ -10,11 +10,9 @@ import UIKit
 import LNPopupController
 import CoreBluetooth
 import CoreLocation
-import Firebase
-import MediaPlayer
-import PromiseKit
-class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
-    
+
+class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNMusicPlaybackDelegate{
+
     var localBeacon: CLBeaconRegion!
     var beaconPeripheralData: NSDictionary!
     var peripheralManager: CBPeripheralManager!
@@ -23,7 +21,8 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
     let broadcastId = "testing"
     let broadcastName = "Demo"
     var queue: [PNTrack] = []
-     var musicPlayer = MPMusicPlayerController.applicationQueuePlayer
+    var musicController: PNMusicController?
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func dismissPressed(_ sender: Any) {
@@ -78,6 +77,8 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
             }
             
             
+            musicController = PNMusicController.init(withTracks: [], delegate: self)
+            
         } else {
         
             //if not host listen for changes to the queue
@@ -87,6 +88,7 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
         
         PNFirebase.getQueue(broadcastId: broadcastId, completion: { (trackList, error) in
             if error == nil {
+                self.musicController?.updateQueue(newQueue: trackList!)
                 self.queue = trackList!
                 self.tableView.reloadData()
             } else {
@@ -97,7 +99,6 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
         
         // Do any additional setup after loading the view.
     }
-    
     
     override func viewDidDisappear(_ animated: Bool) {
         stopLocalBeacon()
@@ -124,6 +125,54 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func onSkipPrevious() {
+        if (isHost){
+            
+        } else {
+            
+        }
+    }
+    
+    func onSkipNext() {
+        if (isHost){
+            
+        } else {
+            
+        }
+    }
+    
+    func onPlay() {
+        if (isHost){
+            
+        } else {
+            
+        }
+    }
+    
+    func onPause() {
+        if (isHost){
+            
+        } else {
+            
+        }
+    }
+    
+    func onStop() {
+        if (isHost){
+            
+        } else {
+            
+        }
+    }
+    
+    func onPlayIndex(_ index: Int) {
+        if (isHost){
+            
+        } else {
+            
+        }
     }
     
     
@@ -168,6 +217,18 @@ extension PNDeviceViewController: UITableViewDelegate, UITableViewDataSource {
         let hv = view as! UITableViewHeaderFooterView
         hv.textLabel?.textColor = UIColor.white
         hv.tintColor = Colors.secondaryDarkColor.lighten(byPercentage: 0.1)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if (isHost){
+            musicController!.playIndex(index: indexPath.row)
+            print(indexPath.row)
+        } else {
+            //PNRemoteAction.init(broadcastId: broadcastId).send
+        }
+        
+
     }
 }
 
