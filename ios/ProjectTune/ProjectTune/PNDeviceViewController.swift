@@ -95,6 +95,7 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
                     }
                     else if(command[1] == "pause"){
                         self.musicPlayer.pause()
+                          db.collection("broadcast").document(self.broadcastId).updateData(["isPlaying": false])
                     }
                     else if(command[1] == "toggle"){
                         if(self.musicPlayer.playbackState == .playing){
@@ -109,6 +110,7 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
                     }
                     else if(command[1] == "play"){
                         self.musicPlayer.play()
+                        db.collection("broadcast").document(self.broadcastId).updateData(["isPlaying": true])
                     }
                     else if(command[1] == "previous"){
                         self.musicPlayer.skipToPreviousItem()
