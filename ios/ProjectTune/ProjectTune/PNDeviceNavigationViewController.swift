@@ -10,19 +10,26 @@ import UIKit
 import LNPopupController
 
 class PNDeviceNavigationViewController: PNNavigationViewController {
-
+    var popupvc: PNMusicPlayerControlsViewController? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MusicPlayerControlsView") as! PNMusicPlayerControlsViewController
+        popupvc = storyboard.instantiateViewController(withIdentifier: "MusicPlayerControlsView") as! PNMusicPlayerControlsViewController
         
         self.popupInteractionStyle = .drag
         self.view.backgroundColor = UIColor.black
-        self.presentPopupBar(withContentViewController: vc, animated: true) {
+        self.presentPopupBar(withContentViewController: popupvc!, animated: true) {
             
         }
-        
         // Do any additional setup after loading the view.
+    }
+    
+    func getModel() -> PNMusicViewModel {
+        return popupvc!.model
+    }
+    
+    func updateMode() {
+        popupvc?.updateModel()
     }
 
     override func didReceiveMemoryWarning() {

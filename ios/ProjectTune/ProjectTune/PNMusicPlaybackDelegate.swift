@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MediaPlayer
 
 protocol PNMusicPlaybackDelegate {
     
@@ -16,5 +17,6 @@ protocol PNMusicPlaybackDelegate {
     func onPause()
     func onStop()
     func onPlayIndex(_ index: Int)
+    func onPlayingItemChanged(playingItem: MPMediaItem?)
     
 }

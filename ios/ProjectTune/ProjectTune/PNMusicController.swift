@@ -9,11 +9,10 @@
 import Foundation
 import MediaPlayer
 
-class PNMusicController: PNMusicControllerProtocol {
+class PNMusicController {
     
     private var internalTrackList: [PNTrack] = []
     private var musicPlayer : MPMusicPlayerApplicationController
-    private var queueDescriptor: MPMusicPlayerStoreQueueDescriptor
     private var musicPlaybackDelegate: PNMusicPlaybackDelegate
 
     
@@ -23,28 +22,65 @@ class PNMusicController: PNMusicControllerProtocol {
         for track in internalTrackList {
             internalTrackIdList.append("\(track.trackId ?? 0)")
         }
-        queueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: internalTrackIdList)
+        let queueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: internalTrackIdList)
         musicPlayer = MPMusicPlayerController.applicationQueuePlayer
         musicPlayer.setQueue(with: queueDescriptor)
         musicPlayer.prepareToPlay()
         musicPlaybackDelegate = delegate
+        //observe()
+    }
+    
+    fileprivate func observe(){
+        NotificationCenter.default.addObserver(self, selector: #selector(onPlayingItemChanged), name: NSNotification.Name.MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
+        musicPlayer.beginGeneratingPlaybackNotifications()
+    }
+    
+    @objc func onPlayingItemChanged(){
+        musicPlaybackDelegate.onPlayingItemChanged(playingItem: musicPlayer.nowPlayingItem)
+    }
+    
+    func addSong(newSong: PNTrack) {
+        print("dedw")
+        let newQueueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: ["\(newSong.trackId!)"])
+        musicPlayer.append(newQueueDescriptor)
     }
     
     func updateQueue(newQueue: [PNTrack]){
-        internalTrackList = newQueue
+        
+        
+//        musicPlayer.setQueue(with: queueDescriptor)
+//        musicPlayer.prepareToPlay()
+        /*var queueNew = newQueue
+        musicPlayer.perform(queueTransaction: { (mutableQueue) in
+            let queueItems = mutableQueue.items
+            var indexesToRemove: [Int] = []
+            for itemInNewQueue in newQueue {
+                var index = 0
+                for itemInQueue in queueItems {
+                    if String(describing: itemInNewQueue.trackId) == itemInQueue.playbackStoreID {
+                        indexesToRemove.append(index)
+                    }
+                    index = index + 1
+                }
+            }
+            for toRemove in indexesToRemove {
+                queueNew.remove(at: toRemove)
+            }
+            let queueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: self.updateInternalTrackList(tracks: queueNew))
+            self.musicPlayer.append(queueDescriptor)
+        }) { (queue, error) in
+            print(error)
+        }*/
+    }
+    
+    func updateInternalTrackList(tracks: [PNTrack]) -> [String]{
+        internalTrackList = tracks
         var internalTrackIdList: [String] = []
         for track in internalTrackList {
             internalTrackIdList.append("\(track.trackId ?? 0)")
         }
-        queueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: internalTrackIdList)
-        musicPlayer.setQueue(with: queueDescriptor)
-        musicPlayer.prepareToPlay()
-//        musicPlayer.perform(queueTransaction: { (mutableQueue) in
-//            let queueItems = mutableQueue.items
-//            mutableQueue.insert(self.queueDescriptor, after: queueItems[0])
-//        }) { (queue, error) in
-//            print(error)
-//        }
+        return internalTrackIdList
+        
     }
     
     func pause() -> Void {
@@ -73,10 +109,10 @@ class PNMusicController: PNMusicControllerProtocol {
     }
     
     func play() -> Void {
-        if musicPlayer.playbackState == .playing || musicPlayer.playbackState == .stopped {
+        //if musicPlayer.playbackState == .playing || musicPlayer.playbackState == .stopped {
             musicPlayer.play()
-            musicPlaybackDelegate.onPlay()
-        }
+
+        //}
     }
     
     func stop() {
@@ -100,7 +136,7 @@ class PNMusicController: PNMusicControllerProtocol {
     func add(track: PNTrack, onAddFinished onAdd: @escaping ([PNTrack]) -> Void) {
 
         let newQueueDescriptor: MPMusicPlayerStoreQueueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: [String(describing: track.trackId)])
-        
+
         if (internalTrackList.count == 0){
             self.musicPlayer.append(newQueueDescriptor)
             self.internalTrackList.append(track)

@@ -10,9 +10,13 @@ import UIKit
 import LNPopupController
 import CoreBluetooth
 import CoreLocation
+import MediaPlayer
+import FirebaseFirestore
+import PromiseKit
 
 class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNMusicPlaybackDelegate{
 
+    private var musicPlayer : MPMusicPlayerApplicationController = MPMusicPlayerController.applicationQueuePlayer
     var localBeacon: CLBeaconRegion!
     var beaconPeripheralData: NSDictionary!
     var peripheralManager: CBPeripheralManager!
@@ -22,20 +26,27 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
     let broadcastName = "Demo"
     var queue: [PNTrack] = []
     var musicController: PNMusicController?
+    var commandListener: ListenerRegistration? = nil
+    var queueListener: ListenerRegistration? = nil
     
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func dismissPressed(_ sender: Any) {
+        let db = Firestore.firestore()
+        commandListener?.remove()
+        queueListener?.remove()
         self.dismiss(animated: true, completion: nil)
     }
     
     
     @IBAction func addButtonPressed(_ sender: Any) {
+        
         self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        musicPlayer = MPMusicPlayerController.applicationQueuePlayer
         if(isHost){
             
             print("Host")
@@ -51,23 +62,124 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
             
             musicController = PNMusicController.init(withTracks: [], delegate: self)
             
-        } else {
-        
-            //if not host listen for changes to the queue
-     
+            let db = Firestore.firestore()
             
+            commandListener = db.collection("broadcast").document(broadcastId).addSnapshotListener { (snap, err) in
+                var command = (snap!.get("remote_action") as! String).components(separatedBy: "|")
+                print(command)
+                if(command[0] == "alexa"){
+                    if(command[1] == "song"){
+                        firstly {
+                            PNNetwork.fetchTracksWith(term: command[2])
+                            }.done { response in
+                                print(response.results?.first)
+                                DispatchQueue.main.async {
+                                    PNFirebase.add(track: response.results!.first!, broadcastId: "testing")
+                                }
+                                
+                               
+                               
+                                
+                            }.catch { error in
+                                //…
+                                print(error)
+                        }
+                    }
+                    else if(command[1] == "skip"){
+                        self.musicPlayer.skipToNextItem()
+                    }
+                    else if(command[1] == "pause"){
+                        self.musicPlayer.pause()
+                    }
+                    else if(command[1] == "play"){
+                        self.musicPlayer.play()
+                    }
+                    db.collection("broadcast").document(self.broadcastId).updateData(["remote_action": ""])
+                }
+            }
+            
+
+            var first = true
+            queueListener = db.collection("broadcast").document(broadcastId).collection("queue").addSnapshotListener { (snap, err) in
+                snap!.documentChanges.reversed().forEach { diff in
+                    if (diff.type == .added) {
+                        var track = PNTrack.init(dictionary: diff.document.data())
+                        print("Added")
+                        DispatchQueue.main.async {
+                            let newQueueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: ["\(track.trackId!)"])
+                            
+                            if(first == true){
+                                self.musicPlayer.setQueue(with: newQueueDescriptor)
+                                first = false
+                                self.musicPlayer.play()
+                            }
+                            else{
+                                self.musicPlayer.append(newQueueDescriptor)
+                            }
+                            self.queue.append(track)
+                            
+                            self.tableView.reloadData()
+                        }
+                        
+                        
+                        
+                    }
+                    if (diff.type == .modified) {
+                        print("Modified city: \(diff.document.data())")
+                    }
+                    if (diff.type == .removed) {
+                        print("Removed city: \(diff.document.data())")
+                    }
+                }
+                
+            }
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(onPlayingItemChanged), name: NSNotification.Name.MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
+            musicPlayer.beginGeneratingPlaybackNotifications()
+
+            
+        } else {
+            
+            let db = Firestore.firestore()
+            let queuedCollection = db.collection("broadcast").document(broadcastId).collection("queue").addSnapshotListener { (snap, err) in
+                snap!.documentChanges.reversed().forEach { diff in
+                    if (diff.type == .added) {
+                        var track = PNTrack.init(dictionary: diff.document.data())
+                        self.queue.append(track)
+                        
+                        self.tableView.reloadData()
+                        
+                        
+                    }
+                    if (diff.type == .modified) {
+                        print("Modified city: \(diff.document.data())")
+                    }
+                    if (diff.type == .removed) {
+                        print("Removed city: \(diff.document.data())")
+                    }
+                }
+                
+            }
         }
         
-        PNFirebase.getQueue(broadcastId: broadcastId, completion: { (trackList, error) in
+       
+    
+        
+       
+
+       
+        
+        /*PNFirebase.getQueue(broadcastId: broadcastId, completion: { (trackList, error) in
             if error == nil {
-                self.musicController?.updateQueue(newQueue: trackList!)
+                //self.musicController?.updateQueue(newQueue: trackList!)
                 self.queue = trackList!
+                self.musicController!.addSong(newSong: trackList!.first!)
                 self.tableView.reloadData()
             } else {
                 print("Could not get items")
                 print(error ?? "error")
             }
-        })
+        })*/
         
         // Do any additional setup after loading the view.
     }
@@ -144,6 +256,26 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
             
         } else {
             
+        }
+    }
+    
+    @objc func onPlayingItemChanged(playingItem: MPMediaItem?) {
+        var pp = self.musicPlayer.nowPlayingItem
+        if(pp != nil){
+            
+            if let nav = self.navigationController as? PNDeviceNavigationViewController{
+        let model = nav.getModel()
+   
+        
+        let db = Firestore.firestore()
+        if(pp != nil){
+            
+            model.artistName = pp?.artist
+            model.songName = pp?.title
+            nav.updateMode()
+            db.collection("broadcast").document(self.broadcastId).updateData(["currentTrackDescription": "\(pp!.title!) by \(pp!.artist!)"])
+        }
+            }
         }
     }
     
