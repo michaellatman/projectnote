@@ -56,17 +56,19 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
         } else {
         
             //if not host listen for changes to the queue
-            PNFirebase.getQueue(broadcastId: broadcastId, completion: { (trackList, error) in
-                if error == nil {
-                    self.queue = trackList!
-                    self.tableView.reloadData()
-                } else {
-                    print("Could not get items")
-                    print(error ?? "error")
-                }
-            })
+     
             
         }
+        
+        PNFirebase.getQueue(broadcastId: broadcastId, completion: { (trackList, error) in
+            if error == nil {
+                self.queue = trackList!
+                self.tableView.reloadData()
+            } else {
+                print("Could not get items")
+                print(error ?? "error")
+            }
+        })
         
         // Do any additional setup after loading the view.
     }
