@@ -24,7 +24,7 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
         searchController.searchResultsDataSource = self
         
        
-        //searchController.searchResultsTableView.color
+        //searc
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,6 +34,7 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         CRNotifications.showNotification(type: .success, title: "Added Song", message: "Keep the tunes going!", dismissDelay: 3)
+        PNFirebase.add(track: model.tracks![indexPath.row], broadcastId: "testing")
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

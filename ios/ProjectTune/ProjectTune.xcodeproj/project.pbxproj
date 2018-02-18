@@ -12,6 +12,7 @@
 		6715ABA020388360007C2B27 /* PNSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6715AB9F20388360007C2B27 /* PNSongTableViewCell.swift */; };
 		6766B0E12038DF9C0057F884 /* PNSearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766B0E02038DF9C0057F884 /* PNSearchResultViewModel.swift */; };
 		6766B0E32038E2A00057F884 /* PNSongSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766B0E22038E2A00057F884 /* PNSongSearchResultTableViewCell.swift */; };
+		6766B0E5203902CA0057F884 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6766B0E4203902CA0057F884 /* PromiseKit.framework */; };
 		679D07BC2037D05600F62C68 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679D07BB2037D05600F62C68 /* ChameleonFramework.framework */; };
 		679D07BE2037D15D00F62C68 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679D07BD2037D15D00F62C68 /* Colors.swift */; };
 		679D07C02037D7F300F62C68 /* PNNearbyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679D07BF2037D7F300F62C68 /* PNNearbyTableViewController.swift */; };
@@ -51,7 +52,6 @@
 		96BF2FC02037FEF9008BA989 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BF2FC12037FEF9008BA989 /* Alamofire.framework */; };
 		96BF2FC92038046E008BA989 /* PNTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED67B2037DB1B0086348E /* PNTrack.swift */; };
 		B3126F392038DF7C00AAAB36 /* PNMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3126F382038DF7C00AAAB36 /* PNMusicViewModel.swift */; };
-		B3126F3A2038FA0800AAAB36 /* CRNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3126F3B2038FA0800AAAB36 /* CRNotifications.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +85,7 @@
 		6715AB9F20388360007C2B27 /* PNSongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSongTableViewCell.swift; sourceTree = "<group>"; };
 		6766B0E02038DF9C0057F884 /* PNSearchResultViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNSearchResultViewModel.swift; sourceTree = "<group>"; };
 		6766B0E22038E2A00057F884 /* PNSongSearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNSongSearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		6766B0E4203902CA0057F884 /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		679D07BB2037D05600F62C68 /* ChameleonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ChameleonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		679D07BD2037D15D00F62C68 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		679D07BF2037D7F300F62C68 /* PNNearbyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNNearbyTableViewController.swift; sourceTree = "<group>"; };
@@ -142,7 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3126F3A2038FA0800AAAB36 /* CRNotifications.framework in Frameworks */,
+				6766B0E5203902CA0057F884 /* PromiseKit.framework in Frameworks */,
 				96BF2FC02037FEF9008BA989 /* Alamofire.framework in Frameworks */,
 				679D07BC2037D05600F62C68 /* ChameleonFramework.framework in Frameworks */,
 				0891CFC5D564035A8293AA24 /* Pods_ProjectTune.framework in Frameworks */,
@@ -269,6 +270,7 @@
 		B2B5BD70A16BE049DE575ED6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6766B0E4203902CA0057F884 /* PromiseKit.framework */,
 				B3126F3B2038FA0800AAAB36 /* CRNotifications.framework */,
 				96BF2FC12037FEF9008BA989 /* Alamofire.framework */,
 				679D07BB2037D05600F62C68 /* ChameleonFramework.framework */,
@@ -696,10 +698,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WZD8A279B6;
+				DEVELOPMENT_TEAM = ZQ34F633JX;
 				INFOPLIST_FILE = ProjectTune/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grouptune.ProjectTune;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grouptune.ProjectTunes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -714,10 +716,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WZD8A279B6;
+				DEVELOPMENT_TEAM = ZQ34F633JX;
 				INFOPLIST_FILE = ProjectTune/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grouptune.ProjectTune;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grouptune.ProjectTunes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
