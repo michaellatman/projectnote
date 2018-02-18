@@ -30,6 +30,23 @@ class PNMusicController: PNMusicControllerProtocol {
         musicPlaybackDelegate = delegate
     }
     
+    func updateQueue(newQueue: [PNTrack]){
+        internalTrackList = newQueue
+        var internalTrackIdList: [String] = []
+        for track in internalTrackList {
+            internalTrackIdList.append("\(track.trackId ?? 0)")
+        }
+        queueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: internalTrackIdList)
+        musicPlayer.setQueue(with: queueDescriptor)
+        musicPlayer.prepareToPlay()
+//        musicPlayer.perform(queueTransaction: { (mutableQueue) in
+//            let queueItems = mutableQueue.items
+//            mutableQueue.insert(self.queueDescriptor, after: queueItems[0])
+//        }) { (queue, error) in
+//            print(error)
+//        }
+    }
+    
     func pause() -> Void {
         if musicPlayer.playbackState == .playing {
             musicPlayer.pause()
@@ -41,11 +58,15 @@ class PNMusicController: PNMusicControllerProtocol {
         if index < internalTrackList.count {
             musicPlayer.perform(queueTransaction: { (mutableQueue) in
                 let mediaItems = mutableQueue.items
+                if (self.musicPlayer.playbackState != .playing)
+                {
+                    self.musicPlayer.play()
+                }
                 let itemToPlay = mediaItems[index]
                 self.musicPlayer.nowPlayingItem = itemToPlay
                 self.musicPlaybackDelegate.onPlayIndex(index)
             }, completionHandler: { (queue, error) in
-                
+                print(error)
             })
         }
         
@@ -77,14 +98,20 @@ class PNMusicController: PNMusicControllerProtocol {
     }
     
     func add(track: PNTrack, onAddFinished onAdd: @escaping ([PNTrack]) -> Void) {
-//        let newQueueDescriptor: MPMusicPlayerStoreQueueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: [track.id])
-//        musicPlayer.append(newQueueDescriptor)
-        musicPlayer.perform(queueTransaction: { (mutableQueue) in
-            let newQueueDescriptor: MPMusicPlayerStoreQueueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: [String(describing: track.trackId)])
-            let queueItems = mutableQueue.items
-            mutableQueue.insert(newQueueDescriptor, after: queueItems[queueItems.count-1])
-        }) { (queue, error) in
-            onAdd(self.internalTrackList)
+
+        let newQueueDescriptor: MPMusicPlayerStoreQueueDescriptor = MPMusicPlayerStoreQueueDescriptor.init(storeIDs: [String(describing: track.trackId)])
+        
+        if (internalTrackList.count == 0){
+            self.musicPlayer.append(newQueueDescriptor)
+            self.internalTrackList.append(track)
+        } else {
+            musicPlayer.perform(queueTransaction: { (mutableQueue) in
+                let queueItems = mutableQueue.items
+                mutableQueue.insert(newQueueDescriptor, after: queueItems[queueItems.count-1])
+                self.internalTrackList.append(track)
+            }) { (queue, error) in
+                onAdd(self.internalTrackList)
+            }
         }
     }
     
@@ -93,7 +120,7 @@ class PNMusicController: PNMusicControllerProtocol {
             let queueItems = mutableQueue.items
             for index in 0..<queueItems.count {
                 let item = queueItems[index]
-                if Int(item.playbackStoreID) == track.trackId && index != 0 {
+                if Int(item.playbackStoreID) == track.trackId {
                     mutableQueue.remove(item)
                     self.internalTrackList.remove(at: index)
                 }

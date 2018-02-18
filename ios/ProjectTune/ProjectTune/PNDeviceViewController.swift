@@ -16,7 +16,6 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
     var localBeacon: CLBeaconRegion!
     var beaconPeripheralData: NSDictionary!
     var peripheralManager: CBPeripheralManager!
-    var musicControllerDelegate: PNMusicControllerProtocol?
     
     var isHost = false
     let broadcastId = "testing"
@@ -51,7 +50,6 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
             peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
             
             musicController = PNMusicController.init(withTracks: [], delegate: self)
-            musicControllerDelegate = musicController
             
         } else {
         
@@ -62,6 +60,7 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
         
         PNFirebase.getQueue(broadcastId: broadcastId, completion: { (trackList, error) in
             if error == nil {
+                self.musicController?.updateQueue(newQueue: trackList!)
                 self.queue = trackList!
                 self.tableView.reloadData()
             } else {
@@ -195,9 +194,8 @@ extension PNDeviceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if (isHost){
-            if musicControllerDelegate != nil {
-                musicControllerDelegate?.playIndex(index: indexPath.row)
-            }
+            musicController!.playIndex(index: indexPath.row)
+            print(indexPath.row)
         } else {
             //PNRemoteAction.init(broadcastId: broadcastId).send
         }
