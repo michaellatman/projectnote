@@ -18,8 +18,12 @@ class PNMusicPlayerControlsViewController: UIViewController {
     @IBOutlet weak var trackNameLabel: UILabel!
     
     @IBOutlet weak var pausePlayButton: UIButton!
+<<<<<<< HEAD
     var db = Firestore.firestore()
     var model = PNMusicViewModel.init(songName: "song", artistName: "artist", isPlaying: true, trackId: nil)
+=======
+
+>>>>>>> 797b8a7dbf562e7459eb89099fabd8387f129d25
     
     @IBOutlet weak var backgroundAlbumImageView: UIImageView!
     @IBOutlet weak var foregroundAlbumImageView: UIImageView!
@@ -45,14 +49,20 @@ class PNMusicPlayerControlsViewController: UIViewController {
         
       
         artistNameLabel.text = model.artistName
+<<<<<<< HEAD
         trackNameLabel.text = model.songName
         if(model.isPlaying == true){
               print("dawdwd")
             let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: self, action: #selector(playbackToggle))
+=======
+        if(model.isPlaying == true){
+            let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
+>>>>>>> 797b8a7dbf562e7459eb89099fabd8387f129d25
             pause.accessibilityLabel = NSLocalizedString("Pause", comment: "")
             pause.tintColor = UIColor.white
             pause.tintColor = UIColor.white
             
+<<<<<<< HEAD
             
             popupItem.leftBarButtonItems = [ pause ]
         
@@ -60,12 +70,26 @@ class PNMusicPlayerControlsViewController: UIViewController {
         }
         else if (model.isPlaying == false     ){
             let play = UIBarButtonItem(image: UIImage(named: "play"), style: .plain, target: self, action: #selector(playbackToggle))
+=======
+            pausePlayButton.imageView?.image =
+                UIImage(named: "nowPlaying_pause")
+
+        }
+        else if (model.isPlaying == false){
+            let play = UIBarButtonItem(image: UIImage(named: "play"), style: .plain, target: nil, action: nil)
+>>>>>>> 797b8a7dbf562e7459eb89099fabd8387f129d25
             play.accessibilityLabel = NSLocalizedString("Play", comment: "")
             play.tintColor = UIColor.white
             play.tintColor = UIColor.white
             popupItem.leftBarButtonItems = [ play ]
             
+<<<<<<< HEAD
             pausePlayButton.imageView!.image = UIImage(named: "nowPlaying_play")!
+=======
+            pausePlayButton.imageView?.image =
+                UIImage(named: "nowPlaying_play")
+        
+>>>>>>> 797b8a7dbf562e7459eb89099fabd8387f129d25
         }
         
         let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: self, action: #selector(skipForward))
