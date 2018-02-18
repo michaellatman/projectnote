@@ -18,6 +18,9 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
     var peripheralManager: CBPeripheralManager!
     
     var isHost = false
+    let broadcastId = "testing"
+    let broadcastName = "Demo"
+    var queue: [PNTrack] = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -45,8 +48,20 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
             beaconPeripheralData = localBeacon.peripheralData(withMeasuredPower: nil)
             peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
             
-        }
+        } else {
         
+            //if not host listen for changes to the queue
+            PNFirebase.getQueue(broadcastId: broadcastId, completion: { (trackList, error) in
+                if error == nil {
+                    self.queue = trackList!
+                    self.tableView.reloadData()
+                } else {
+                    print("Could not get items")
+                    print(error ?? "error")
+                }
+            })
+            
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -99,11 +114,14 @@ extension PNDeviceViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return queue.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "songCell")!
+        let cell: PNSongTableViewCell = tableView.dequeueReusableCell(withIdentifier: "songCell")! as! PNSongTableViewCell
+        cell.trackArtist.text = queue[indexPath.row].artistName
+        cell.trackTitle.text = queue[indexPath.row].trackName
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
