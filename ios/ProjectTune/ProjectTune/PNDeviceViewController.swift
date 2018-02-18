@@ -10,7 +10,9 @@ import UIKit
 import LNPopupController
 import CoreBluetooth
 import CoreLocation
-
+import Firebase
+import MediaPlayer
+import PromiseKit
 class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
     
     var localBeacon: CLBeaconRegion!
@@ -21,7 +23,7 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
     let broadcastId = "testing"
     let broadcastName = "Demo"
     var queue: [PNTrack] = []
-    
+     var musicPlayer = MPMusicPlayerController.applicationQueuePlayer
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func dismissPressed(_ sender: Any) {
@@ -34,6 +36,7 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        musicPlayer = MPMusicPlayerController.applicationQueuePlayer
         
         if(isHost){
             
@@ -47,6 +50,33 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
             
             beaconPeripheralData = localBeacon.peripheralData(withMeasuredPower: nil)
             peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+            
+            let db = Firestore.firestore()
+            let queueCollection = db.collection("broadcast").document(broadcastId).addSnapshotListener { (snap, err) in
+                var command = (snap!.get("remote_action") as! String).components(separatedBy: "|")
+                    print(command)
+                if(command[0] == "alexa"){
+                    if(command[1] == "song"){
+                        firstly {
+                            PNNetwork.fetchTracksWith(term: command[2])
+                            }.done { response in
+                                print(response.results?.first)
+                                DispatchQueue.main.async {
+                                    
+                                    var p = PNMusicController.init(withTracks: [response.results!.first!])
+                                    p.play()
+                                }
+                            
+                                
+                            }.catch { error in
+                                //…
+                                print(error)
+                        }
+                       
+                    }
+                }
+            }
+            
             
         } else {
         
