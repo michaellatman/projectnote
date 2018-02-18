@@ -54,7 +54,7 @@ class PNFirebase {
                 completion(nil, error)
             } else {
                 var trackList: [PNTrack] = []
-                for document in snapshot!.documents {
+                for document in snapshot!.documents.reversed() {
                     let track = PNTrack.init(dictionary: document.data())
                     trackList.append(track)
                 }
