@@ -40,8 +40,9 @@
 		962D28042038C347004AA0E5 /* PNQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D28032038C347004AA0E5 /* PNQueue.swift */; };
 		962D28062038D005004AA0E5 /* PNRemoteAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D28052038D005004AA0E5 /* PNRemoteAction.swift */; };
 		962D28082038D1AD004AA0E5 /* PNBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D28072038D1AD004AA0E5 /* PNBroadcast.swift */; };
+		962D280A203906AE004AA0E5 /* PNMusicControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D2809203906AE004AA0E5 /* PNMusicControllerProtocol.swift */; };
 		964ED6782037D7AE0086348E /* PNMusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED6772037D7AE0086348E /* PNMusicController.swift */; };
-		964ED67A2037D83B0086348E /* PNPlaybackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED6792037D83B0086348E /* PNPlaybackDelegate.swift */; };
+		964ED67A2037D83B0086348E /* PNMusicPlaybackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED6792037D83B0086348E /* PNMusicPlaybackDelegate.swift */; };
 		964ED67C2037DB1B0086348E /* PNTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED67B2037DB1B0086348E /* PNTrack.swift */; };
 		964ED67E2037F1C00086348E /* PNNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ED67D2037F1C00086348E /* PNNetwork.swift */; };
 		96BAF34920388B6C00B3E2E5 /* PNExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BAF34820388B6C00B3E2E5 /* PNExtensions.swift */; };
@@ -119,8 +120,9 @@
 		962D28032038C347004AA0E5 /* PNQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNQueue.swift; sourceTree = "<group>"; };
 		962D28052038D005004AA0E5 /* PNRemoteAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNRemoteAction.swift; sourceTree = "<group>"; };
 		962D28072038D1AD004AA0E5 /* PNBroadcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNBroadcast.swift; sourceTree = "<group>"; };
+		962D2809203906AE004AA0E5 /* PNMusicControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNMusicControllerProtocol.swift; sourceTree = "<group>"; };
 		964ED6772037D7AE0086348E /* PNMusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNMusicController.swift; sourceTree = "<group>"; };
-		964ED6792037D83B0086348E /* PNPlaybackDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPlaybackDelegate.swift; sourceTree = "<group>"; };
+		964ED6792037D83B0086348E /* PNMusicPlaybackDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNMusicPlaybackDelegate.swift; sourceTree = "<group>"; };
 		964ED67B2037DB1B0086348E /* PNTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNTrack.swift; sourceTree = "<group>"; };
 		964ED67D2037F1C00086348E /* PNNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNNetwork.swift; sourceTree = "<group>"; };
 		96BAF34820388B6C00B3E2E5 /* PNExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNExtensions.swift; sourceTree = "<group>"; };
@@ -190,7 +192,7 @@
 				67B02EF32037C5820092C186 /* LaunchScreen.storyboard */,
 				67B02EF62037C5820092C186 /* Info.plist */,
 				964ED6772037D7AE0086348E /* PNMusicController.swift */,
-				964ED6792037D83B0086348E /* PNPlaybackDelegate.swift */,
+				964ED6792037D83B0086348E /* PNMusicPlaybackDelegate.swift */,
 				964ED67B2037DB1B0086348E /* PNTrack.swift */,
 				964ED67D2037F1C00086348E /* PNNetwork.swift */,
 				679D07BD2037D15D00F62C68 /* Colors.swift */,
@@ -214,6 +216,7 @@
 				962D28032038C347004AA0E5 /* PNQueue.swift */,
 				962D28052038D005004AA0E5 /* PNRemoteAction.swift */,
 				962D28072038D1AD004AA0E5 /* PNBroadcast.swift */,
+				962D2809203906AE004AA0E5 /* PNMusicControllerProtocol.swift */,
 			);
 			path = ProjectTune;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				96BF2FBF2037FE1A008BA989 /* PNNavigationViewController.swift in Sources */,
 				964ED67E2037F1C00086348E /* PNNetwork.swift in Sources */,
 				964ED67C2037DB1B0086348E /* PNTrack.swift in Sources */,
+				962D280A203906AE004AA0E5 /* PNMusicControllerProtocol.swift in Sources */,
 				96BAF34B2038921800B3E2E5 /* PNItunesSearchResponse.swift in Sources */,
 				679D07CC2037EBA100F62C68 /* PNDeviceViewController.swift in Sources */,
 				962D28022038B9B2004AA0E5 /* PNFirebase.swift in Sources */,
@@ -537,7 +541,7 @@
 				67E1139F2038C48900252875 /* AddSongTableViewController.swift in Sources */,
 				96BAF34920388B6C00B3E2E5 /* PNExtensions.swift in Sources */,
 				67B02EEB2037C5820092C186 /* AppDelegate.swift in Sources */,
-				964ED67A2037D83B0086348E /* PNPlaybackDelegate.swift in Sources */,
+				964ED67A2037D83B0086348E /* PNMusicPlaybackDelegate.swift in Sources */,
 				962D28062038D005004AA0E5 /* PNRemoteAction.swift in Sources */,
 				6766B0E12038DF9C0057F884 /* PNSearchResultViewModel.swift in Sources */,
 			);

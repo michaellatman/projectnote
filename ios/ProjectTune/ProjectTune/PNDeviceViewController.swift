@@ -11,16 +11,18 @@ import LNPopupController
 import CoreBluetooth
 import CoreLocation
 
-class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
-    
+class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNMusicPlaybackDelegate{
+
     var localBeacon: CLBeaconRegion!
     var beaconPeripheralData: NSDictionary!
     var peripheralManager: CBPeripheralManager!
+    var musicControllerDelegate: PNMusicControllerProtocol?
     
     var isHost = false
     let broadcastId = "testing"
     let broadcastName = "Demo"
     var queue: [PNTrack] = []
+    var musicController: PNMusicController?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -48,6 +50,9 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
             beaconPeripheralData = localBeacon.peripheralData(withMeasuredPower: nil)
             peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
             
+            musicController = PNMusicController.init(withTracks: [], delegate: self)
+            musicControllerDelegate = musicController
+            
         } else {
         
             //if not host listen for changes to the queue
@@ -65,7 +70,6 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
         
         // Do any additional setup after loading the view.
     }
-    
     
     override func viewDidDisappear(_ animated: Bool) {
         stopLocalBeacon()
@@ -92,6 +96,54 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func onSkipPrevious() {
+        if (isHost){
+            
+        } else {
+            
+        }
+    }
+    
+    func onSkipNext() {
+        if (isHost){
+            
+        } else {
+            
+        }
+    }
+    
+    func onPlay() {
+        if (isHost){
+            
+        } else {
+            
+        }
+    }
+    
+    func onPause() {
+        if (isHost){
+            
+        } else {
+            
+        }
+    }
+    
+    func onStop() {
+        if (isHost){
+            
+        } else {
+            
+        }
+    }
+    
+    func onPlayIndex(_ index: Int) {
+        if (isHost){
+            
+        } else {
+            
+        }
     }
     
     
@@ -136,6 +188,19 @@ extension PNDeviceViewController: UITableViewDelegate, UITableViewDataSource {
         let hv = view as! UITableViewHeaderFooterView
         hv.textLabel?.textColor = UIColor.white
         hv.tintColor = Colors.secondaryDarkColor.lighten(byPercentage: 0.1)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if (isHost){
+            if musicControllerDelegate != nil {
+                musicControllerDelegate?.playIndex(index: indexPath.row)
+            }
+        } else {
+            //PNRemoteAction.init(broadcastId: broadcastId).send
+        }
+        
+
     }
 }
 

@@ -9,13 +9,15 @@
 import Foundation
 import MediaPlayer
 
-class PNMusicController {
+class PNMusicController: PNMusicControllerProtocol {
     
     private var internalTrackList: [PNTrack] = []
     private var musicPlayer : MPMusicPlayerApplicationController
     private var queueDescriptor: MPMusicPlayerStoreQueueDescriptor
+    private var musicPlaybackDelegate: PNMusicPlaybackDelegate
+
     
-    init(withTracks: [PNTrack]) {
+    init(withTracks: [PNTrack], delegate: PNMusicPlaybackDelegate) {
         internalTrackList = withTracks
         var internalTrackIdList: [String] = []
         for track in internalTrackList {
@@ -25,33 +27,53 @@ class PNMusicController {
         musicPlayer = MPMusicPlayerController.applicationQueuePlayer
         musicPlayer.setQueue(with: queueDescriptor)
         musicPlayer.prepareToPlay()
+        musicPlaybackDelegate = delegate
     }
     
     func pause() -> Void {
         if musicPlayer.playbackState == .playing {
             musicPlayer.pause()
+            musicPlaybackDelegate.onPause()
         }
+    }
+    
+    func playIndex(index: Int){
+        if index < internalTrackList.count {
+            musicPlayer.perform(queueTransaction: { (mutableQueue) in
+                let mediaItems = mutableQueue.items
+                let itemToPlay = mediaItems[index]
+                self.musicPlayer.nowPlayingItem = itemToPlay
+                self.musicPlaybackDelegate.onPlayIndex(index)
+            }, completionHandler: { (queue, error) in
+                
+            })
+        }
+        
     }
     
     func play() -> Void {
         if musicPlayer.playbackState == .playing || musicPlayer.playbackState == .stopped {
             musicPlayer.play()
+            musicPlaybackDelegate.onPlay()
         }
     }
     
     func stop() {
         if musicPlayer.playbackState == .playing || musicPlayer.playbackState == .paused {
             musicPlayer.stop()
+            musicPlaybackDelegate.onStop()
         }
     }
     
     func skipNext() -> Void {
         musicPlayer.skipToNextItem()
+        musicPlaybackDelegate.onSkipNext()
     }
     
     
     func skipPrevious() -> Void {
         musicPlayer.skipToPreviousItem()
+        musicPlaybackDelegate.onSkipPrevious()
     }
     
     func add(track: PNTrack, onAddFinished onAdd: @escaping ([PNTrack]) -> Void) {
