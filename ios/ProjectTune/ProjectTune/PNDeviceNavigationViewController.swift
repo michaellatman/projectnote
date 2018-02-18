@@ -14,13 +14,14 @@ class PNDeviceNavigationViewController: PNNavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MusicPlayerControlsView")
+        let vc = storyboard.instantiateViewController(withIdentifier: "MusicPlayerControlsView") as! PNMusicPlayerControlsViewController
         
         self.popupInteractionStyle = .drag
         self.view.backgroundColor = UIColor.black
         self.presentPopupBar(withContentViewController: vc, animated: true) {
             
         }
+        
         // Do any additional setup after loading the view.
     }
 
