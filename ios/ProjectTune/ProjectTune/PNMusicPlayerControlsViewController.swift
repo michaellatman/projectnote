@@ -10,9 +10,15 @@ import UIKit
 import LNPopupController
 
 class PNMusicPlayerControlsViewController: UIViewController {
-
+    @IBOutlet weak var artistNameLabel: UILabel!
+    
+    @IBOutlet weak var trackNameLabel: UIVisualEffectView!
+    
+    @IBOutlet weak var pausePlayButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         
         let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
@@ -33,6 +39,8 @@ class PNMusicPlayerControlsViewController: UIViewController {
         popupItem.progress += 0.5;
         // Do any additional setup after loading the view.
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
