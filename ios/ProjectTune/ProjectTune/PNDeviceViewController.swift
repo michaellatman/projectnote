@@ -45,9 +45,14 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        musicPlayer = MPMusicPlayerController.applicationQueuePlayer
+
         if(isHost){
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(onPlayingItemChanged), name: NSNotification.Name.MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(onPlaybackStateChange), name: NSNotification.Name.MPMusicPlayerControllerPlaybackStateDidChange, object: nil)
+            musicPlayer.beginGeneratingPlaybackNotifications()
+            
             
             print("Host")
             let localBeaconUUID = "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5"
@@ -60,12 +65,12 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
             beaconPeripheralData = localBeacon.peripheralData(withMeasuredPower: nil)
             peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
             
-            musicController = PNMusicController.init(withTracks: [], delegate: self)
-            
+     
             let db = Firestore.firestore()
             
             commandListener = db.collection("broadcast").document(broadcastId).addSnapshotListener { (snap, err) in
                 var command = (snap!.get("remote_action") as! String).components(separatedBy: "|")
+                db.collection("broadcast").document(self.broadcastId).updateData(["remote_action": ""])
                 print(command)
                 if(command[0] == "alexa"){
                     if(command[1] == "song"){
@@ -91,10 +96,28 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
                     else if(command[1] == "pause"){
                         self.musicPlayer.pause()
                     }
+                    else if(command[1] == "toggle"){
+                        if(self.musicPlayer.playbackState == .playing){
+                             self.musicPlayer.pause()
+                              db.collection("broadcast").document(self.broadcastId).updateData(["isPlaying": false])
+                        }
+                        else{
+                             self.musicPlayer.play()
+                            db.collection("broadcast").document(self.broadcastId).updateData(["isPlaying": true])
+                            
+                        }
+                    }
                     else if(command[1] == "play"){
                         self.musicPlayer.play()
                     }
-                    db.collection("broadcast").document(self.broadcastId).updateData(["remote_action": ""])
+                    else if(command[1] == "previous"){
+                        self.musicPlayer.skipToPreviousItem()
+                    }
+                    else if(command[1] == "restart"){
+                        self.musicPlayer.skipToBeginning()
+                    }
+                    
+                  
                 }
             }
             
@@ -112,6 +135,8 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
                                 self.musicPlayer.setQueue(with: newQueueDescriptor)
                                 first = false
                                 self.musicPlayer.play()
+                    
+                                
                             }
                             else{
                                 self.musicPlayer.append(newQueueDescriptor)
@@ -133,9 +158,7 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
                 }
                 
             }
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(onPlayingItemChanged), name: NSNotification.Name.MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
-            musicPlayer.beginGeneratingPlaybackNotifications()
+        
 
             
         } else {
@@ -258,25 +281,34 @@ class PNDeviceViewController: UIViewController, CBPeripheralManagerDelegate, PNM
             
         }
     }
-    
+    @objc func onPlaybackStateChange(playingItem: MPMediaItem?) {
+     
+            print("Playing state change")
+        
+        
+                var isPlaying = false
+                let db = Firestore.firestore()
+                if(playingItem != nil) {
+                    isPlaying = true
+                }
+                else {
+                    isPlaying = false
+                }
+        
+        
+    }
     @objc func onPlayingItemChanged(playingItem: MPMediaItem?) {
         var pp = self.musicPlayer.nowPlayingItem
         if(pp != nil){
-            
-            if let nav = self.navigationController as? PNDeviceNavigationViewController{
-        let model = nav.getModel()
-   
         
         let db = Firestore.firestore()
         if(pp != nil){
-            
-            model.artistName = pp?.artist
-            model.songName = pp?.title
-            nav.updateMode()
-            db.collection("broadcast").document(self.broadcastId).updateData(["currentTrackDescription": "\(pp!.title!) by \(pp!.artist!)"])
+                
+            db.collection("broadcast").document(self.broadcastId).updateData(["currentTrackID": pp!.playbackStoreID,
+                "artist": "\(pp!.artist!)", "songTitle": "\(pp!.title!)", "currentTrackDescription": "\(pp!.title!) by \(pp!.artist!)"])
         }
             }
-        }
+        
     }
     
     
@@ -326,8 +358,8 @@ extension PNDeviceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if (isHost){
-            musicController!.playIndex(index: indexPath.row)
-            print(indexPath.row)
+            //musicController!.playIndex(index: indexPath.row)
+            //print(indexPath.row)
         } else {
             //PNRemoteAction.init(broadcastId: broadcastId).send
         }

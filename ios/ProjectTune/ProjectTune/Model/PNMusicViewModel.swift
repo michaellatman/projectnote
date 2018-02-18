@@ -12,10 +12,11 @@ public class PNMusicViewModel: PNViewModel {
     var songName: String? = nil
     var artistName: String? = nil
     var isPlaying: Bool = false
-    
-    init(songName: String, artistName: String, isPlaying: Bool){
+    var trackId: String? = nil
+    init(songName: String, artistName: String, isPlaying: Bool, trackId: String?){
         self.songName = songName
         self.artistName = artistName
         self.isPlaying = isPlaying
+        self.trackId = trackId
     }
 }

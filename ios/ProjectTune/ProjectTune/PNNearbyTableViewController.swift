@@ -69,7 +69,7 @@ class PNNearbyTableViewController: UITableViewController, CLLocationManagerDeleg
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         var devices: PNNearbyListViewModel = PNNearbyListViewModel()
         for beacon in beacons {
-            devices.addDevice(PNNearbyDeviceViewModel.init(deviceName: UIDevice.current.name, broadcastName: "90's Party"))
+            devices.addDevice(PNNearbyDeviceViewModel.init(deviceName: UIDevice.current.name, broadcastName: "RoadTrip 2018"))
         }
         print(beacons)
       

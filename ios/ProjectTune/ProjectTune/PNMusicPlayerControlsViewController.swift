@@ -8,6 +8,9 @@
 
 import UIKit
 import LNPopupController
+import Firebase
+import PromiseKit
+import SDWebImage
 
 class PNMusicPlayerControlsViewController: UIViewController {
     @IBOutlet weak var artistNameLabel: UILabel!
@@ -15,45 +18,57 @@ class PNMusicPlayerControlsViewController: UIViewController {
     @IBOutlet weak var trackNameLabel: UILabel!
     
     @IBOutlet weak var pausePlayButton: UIButton!
+    var db = Firestore.firestore()
+    var model = PNMusicViewModel.init(songName: "song", artistName: "artist", isPlaying: true, trackId: nil)
     
-    var model = PNMusicViewModel.init(songName: "song", artistName: "artist", isPlaying: false)
-    
+    @IBOutlet weak var backgroundAlbumImageView: UIImageView!
+    @IBOutlet weak var foregroundAlbumImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateModel()
     }
     
+    @IBAction func skipPrevious(_ sender: Any) {
+    db.collection("broadcast").document("testing").updateData(["remote_action":"alexa|previous"])
+    }
+    @IBAction func playbackToggle(_ sender: Any) {
+        db.collection("broadcast").document("testing").updateData(["remote_action":"alexa|toggle"])
+    }
+    
+    
+    @IBAction func skipForward(_ sender: Any) {
+        db.collection("broadcast").document("testing").updateData(["remote_action":"alexa|skip"])
+    }
+    
     func updateModel(){
+        
+      
         artistNameLabel.text = model.artistName
-        if(model.isPlaying == false){
-            let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
+        trackNameLabel.text = model.songName
+        if(model.isPlaying == true){
+              print("dawdwd")
+            let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: self, action: #selector(playbackToggle))
             pause.accessibilityLabel = NSLocalizedString("Pause", comment: "")
             pause.tintColor = UIColor.white
             pause.tintColor = UIColor.white
-            popupItem.leftBarButtonItems = [ pause ]
             
-            let nowPlayingPause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
-            nowPlayingPause.accessibilityLabel = NSLocalizedString("Pause", comment: "")
-            nowPlayingPause.tintColor = UIColor.white
-            nowPlayingPause.tintColor = UIColor.white
-            popupItem.leftBarButtonItems = [ nowPlayingPause ]
+            
+            popupItem.leftBarButtonItems = [ pause ]
+        
+            pausePlayButton.imageView!.image = UIImage(named: "nowPlaying_pause")!
         }
-        else if (model.isPlaying == true){
-            let play = UIBarButtonItem(image: UIImage(named: "play"), style: .plain, target: nil, action: nil)
+        else if (model.isPlaying == false     ){
+            let play = UIBarButtonItem(image: UIImage(named: "play"), style: .plain, target: self, action: #selector(playbackToggle))
             play.accessibilityLabel = NSLocalizedString("Play", comment: "")
             play.tintColor = UIColor.white
             play.tintColor = UIColor.white
             popupItem.leftBarButtonItems = [ play ]
             
-            let nowPlayingPlay = UIBarButtonItem(image: UIImage(named: "play"), style: .plain, target: nil, action: nil)
-            nowPlayingPlay.accessibilityLabel = NSLocalizedString("Play", comment: "")
-            nowPlayingPlay.tintColor = UIColor.white
-            nowPlayingPlay.tintColor = UIColor.white
-            popupItem.leftBarButtonItems = [ nowPlayingPlay ]
+            pausePlayButton.imageView!.image = UIImage(named: "nowPlaying_play")!
         }
         
-        let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: nil, action: nil)
+        let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: self, action: #selector(skipForward))
         next.accessibilityLabel = NSLocalizedString("Next Track", comment: "")
         next.tintColor = UIColor.white
         
@@ -67,6 +82,30 @@ class PNMusicPlayerControlsViewController: UIViewController {
         LNPopupBar.appearance().backgroundStyle = UIBlurEffectStyle.dark
         
         popupItem.progress += 0.5;
+        if(self.model.trackId != nil){
+            firstly {
+                PNNetwork.fetchTracksWith(term: self.model.trackId!)
+                }.done { response in
+                    var fi = response.results?.first
+                    if(fi != nil){
+                        var final = fi!.artworkUrl100!.replacingOccurrences(of: "100x100bb.jpg", with: "600x600.jpg")
+                        print(final)
+                        self.foregroundAlbumImageView.sd_setImage(with: URL.init(string: final)!) { (image, err, cache, url) in
+                            
+                        }
+                        
+                        self.backgroundAlbumImageView.sd_setImage(with: URL.init(string: final)!) { (image, err, cache, url) in
+                            
+                        }
+                    }
+                    
+                }.catch { error in
+                    //…
+                    print(error)
+            }
+        }
+       
+        /**/
         // Do any additional setup after loading the view.
     }
     
