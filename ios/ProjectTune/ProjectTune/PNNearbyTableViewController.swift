@@ -21,6 +21,7 @@ class PNNearbyTableViewController: UITableViewController, CLLocationManagerDeleg
         self.tableView.reloadData()
         
         view.backgroundColor = Colors.secondaryDarkColor
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,10 +29,19 @@ class PNNearbyTableViewController: UITableViewController, CLLocationManagerDeleg
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        startScanning()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        stopScanning()
+    }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
+                    print("Scanning")
                     startScanning()
                 }
             }
@@ -40,20 +50,28 @@ class PNNearbyTableViewController: UITableViewController, CLLocationManagerDeleg
     
     func startScanning() {
         let uuid = UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!
+        
         let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: 123, minor: 456, identifier: "MyBeacon")
         
         locationManager.startMonitoring(for: beaconRegion)
         locationManager.startRangingBeacons(in: beaconRegion)
     }
     
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        print("HI \(beacons)")
-        var devices: PNNearbyListViewModel = PNNearbyListViewModel()
+    func stopScanning() {
+        let uuid = UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!
         
+        
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: 123, minor: 456, identifier: "MyBeacon")
+        locationManager.stopMonitoring(for: beaconRegion)
+        locationManager.stopRangingBeacons(in: beaconRegion)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        var devices: PNNearbyListViewModel = PNNearbyListViewModel()
         for beacon in beacons {
             devices.addDevice(PNNearbyDeviceViewModel.init(deviceName: UIDevice.current.name, broadcastName: "90's Party"))
         }
-        
+        print(beacons)
       
         if(self.model.nearbyDevices.count != devices.nearbyDevices.count) {
             self.model = devices
@@ -110,7 +128,8 @@ class PNNearbyTableViewController: UITableViewController, CLLocationManagerDeleg
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "hostNewSession"){
-            if let vc = segue.destination as? PNDeviceViewController {
+            if let vc = (segue.destination as! UINavigationController).topViewController as? PNDeviceViewController {
+                print("Hosttttt!")
                 vc.isHost = true
             }
         }

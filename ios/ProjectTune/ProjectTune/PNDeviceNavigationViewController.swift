@@ -17,7 +17,7 @@ class PNDeviceNavigationViewController: PNNavigationViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: "MusicPlayerControlsView")
         
         self.popupInteractionStyle = .drag
-
+        self.view.backgroundColor = UIColor.black
         self.presentPopupBar(withContentViewController: vc, animated: true) {
             
         }

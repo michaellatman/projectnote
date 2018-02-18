@@ -9,6 +9,8 @@
 import UIKit
 
 class PNSongTableViewCell: PNCustomTableViewCell {
+    @IBOutlet weak var trackArtist: UILabel!
+    @IBOutlet weak var trackTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
