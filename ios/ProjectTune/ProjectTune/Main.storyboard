@@ -439,7 +439,7 @@
                     <connections>
                         <outlet property="artistNameLabel" destination="Ow5-GL-LdH" id="OAJ-t0-1vb"/>
                         <outlet property="pausePlayButton" destination="NGZ-62-AEU" id="Z8U-2C-sW0"/>
-                        <outlet property="trackNameLabel" destination="UcA-20-jBG" id="7Uw-cN-djK"/>
+                        <outlet property="trackNameLabel" destination="qqH-rQ-sGH" id="6r1-1W-wRo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyo-cT-ovm" userLabel="First Responder" sceneMemberID="firstResponder"/>

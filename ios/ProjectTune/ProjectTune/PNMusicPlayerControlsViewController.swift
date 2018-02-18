@@ -12,7 +12,7 @@ import LNPopupController
 class PNMusicPlayerControlsViewController: UIViewController {
     @IBOutlet weak var artistNameLabel: UILabel!
     
-    @IBOutlet weak var trackNameLabel: UIVisualEffectView!
+    @IBOutlet weak var trackNameLabel: UILabel!
     
     @IBOutlet weak var pausePlayButton: UIButton!
     
