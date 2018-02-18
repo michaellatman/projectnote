@@ -115,4 +115,39 @@ struct PNTrack : Codable {
         isStreamable = try values.decodeIfPresent(Bool.self, forKey: .isStreamable)
     }
     
+    init(dictionary: [String : Any]) {
+        
+        wrapperType = dictionary["wrapperType"] as? String
+        kind = dictionary["kind"] as? String
+        artistId = dictionary["artistId"] as? Int
+        collectionId = dictionary["collectionId"] as? Int
+        trackId = dictionary["trackId"] as? Int
+        artistName = dictionary["artistName"] as? String
+        collectionName = dictionary["collectionName"] as? String
+        trackName = dictionary["trackName"] as? String
+        collectionCensoredName = dictionary["collectionCensoredName"] as? String
+        trackCensoredName = dictionary["trackCensoredName"] as? String
+        artistViewUrl = dictionary["artistViewUrl"] as? String
+        collectionViewUrl = dictionary["collectionViewUrl"] as? String
+        trackViewUrl = dictionary["trackViewUrl"] as? String
+        previewUrl = dictionary["previewUrl"] as? String
+        artworkUrl30 = dictionary["artworkUrl30"] as? String
+        artworkUrl60 = dictionary["artworkUrl60"] as? String
+        artworkUrl100 = dictionary["artworkUrl100"] as? String
+        collectionPrice = dictionary["collectionPrice"] as? Double
+        trackPrice = dictionary["trackPrice"] as? Double
+        releaseDate = dictionary["releaseDate"] as? String
+        collectionExplicitness = dictionary["collectionExplicitness"] as? String
+        trackExplicitness = dictionary["trackExplicitness"] as? String
+        discCount = dictionary["discCount"] as? Int
+        discNumber = dictionary["discNumber"] as? Int
+        trackCount = dictionary["trackCount"] as? Int
+        trackNumber = dictionary["trackNumber"] as? Int
+        trackTimeMillis = dictionary["trackTimeMillis"] as? Int
+        country = dictionary["country"] as? String
+        currency = dictionary["currency"] as? String
+        primaryGenreName = dictionary["primaryGenreName"] as? String
+        isStreamable = dictionary["isStreamable"] as? Bool
+    }
+    
 }

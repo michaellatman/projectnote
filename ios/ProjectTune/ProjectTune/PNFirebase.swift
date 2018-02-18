@@ -8,13 +8,14 @@
 
 import Foundation
 import FirebaseFirestore
+import PromiseKit
 
 class PNFirebase {
     
     /**
     * To be used by host device
     */
-    func startBroadcast(broadcastId: String, broadcastName: String, deviceName: String){
+    static func startBroadcast(broadcastId: String, broadcastName: String, deviceName: String){
         let db = Firestore.firestore()
         let broadcastDocument = db.collection("broadcast").document(broadcastId)
         let broadcastLocal = PNBroadcast.init(broadcastId, broadcastName, deviceName)
@@ -22,7 +23,13 @@ class PNFirebase {
         let jsonEncoder = JSONEncoder()
         do {
             let jsonData = try jsonEncoder.encodeJSONObject(broadcastLocal)
-            broadcastDocument.setData(jsonData as! [String : Any])
+            broadcastDocument.setData(jsonData as! [String : Any], completion: { (error) in
+                if let error = error {
+                    print("Error writing document: \(error)")
+                } else {
+                    print("Document successfully written!")
+                }
+            })
         }
         catch {
             print("Encoding failed")
@@ -32,21 +39,35 @@ class PNFirebase {
     /**
      * To be used by host device
      */
-    func endBroadcast(broadcastId: String) {
+    static func endBroadcast(broadcastId: String) {
         let db = Firestore.firestore()
         let broadcastDocument = db.collection("broadcast").document(broadcastId)
         broadcastDocument.delete()
     }
     
-    func getQueue(){
+    static func getQueue(broadcastId: String, completion: @escaping ([PNTrack]?, Error?) -> Void) {
+        let db = Firestore.firestore()
+        let queueCollection = db.collection("broadcast").document(broadcastId).collection("queue")
+        queueCollection.addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print("Error setting queue listener: \(error)")
+                completion(nil, error)
+            } else {
+                var trackList: [PNTrack] = []
+                for document in snapshot!.documents {
+                    let track = PNTrack.init(dictionary: document.data())
+                    trackList.append(track)
+                }
+                completion(trackList, nil)
+            }
+        }
+    }
+    
+    static func updateQueue(){
         
     }
     
-    func updateQueue(){
-        
-    }
-    
-    func add(track: PNTrack, broadcastId: String){
+    static func add(track: PNTrack, broadcastId: String){
         let db = Firestore.firestore()
         let queueCollection = db.collection("broadcast").document(broadcastId).collection("queue")
         let trackDocument = queueCollection.document()
@@ -54,14 +75,20 @@ class PNFirebase {
         let jsonEncoder = JSONEncoder()
         do {
             let jsonData = try jsonEncoder.encodeJSONObject(track)
-            trackDocument.setData(jsonData as! [String : Any])
+            trackDocument.setData(jsonData as! [String : Any], completion: { (error) in
+                if let error = error {
+                    print("Error writing document: \(error)")
+                } else {
+                    print("Document successfully written!")
+                }
+            })
         }
         catch {
             print("Encoding failed")
         }
     }
     
-    func remove(trackId: String, broadcastId: String){
+    static func remove(trackId: String, broadcastId: String){
         let db = Firestore.firestore()
         let queueCollection = db.collection("broadcast").document(broadcastId).collection("queue")
         queueCollection.whereField("trackId", isEqualTo: trackId).getDocuments { (snapshot, error) in

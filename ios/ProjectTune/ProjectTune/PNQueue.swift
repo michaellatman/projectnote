@@ -12,6 +12,11 @@ struct PNQueue: Codable {
     let trackCount : Int?
     let tracks : [PNTrack]?
     
+    init(){
+        trackCount = 0
+        tracks = []
+    }
+    
     enum CodingKeys: String, CodingKey {
         
         case trackCount = "trackCount"
