@@ -17,9 +17,14 @@ class PNMusicPlayerControlsViewController: UIViewController {
     @IBOutlet weak var pausePlayButton: UIButton!
     
     var model = PNMusicViewModel.init(songName: "song", artistName: "artist", isPlaying: false)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateModel()
+    }
+    
+    func updateModel(){
         artistNameLabel.text = model.artistName
         if(model.isPlaying == false){
             let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: nil, action: nil)
@@ -51,7 +56,7 @@ class PNMusicPlayerControlsViewController: UIViewController {
         let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .plain, target: nil, action: nil)
         next.accessibilityLabel = NSLocalizedString("Next Track", comment: "")
         next.tintColor = UIColor.white
-    
+        
         popupItem.title = model.songName
         popupItem.subtitle = model.artistName
         
